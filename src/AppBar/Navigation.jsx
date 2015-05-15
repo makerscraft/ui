@@ -1,18 +1,32 @@
+const _  = require('lodash');
 const React = require('react');
 const Masthead = require('./Masthead');
 
+
+var defaultLinks = [
+    'Dashboard', 'Settings', 'Accounts'
+]
+
 const Header = React.createClass({
     render() {
+        global;
         let {config} = this.props;
+
         return (
             <header>
                 <div className="nav-container">
                     <nav className="top-nav" rel="main-navigation">
                         <Masthead/>
                         <ul className="nav-list">
-                            <li><a className="nav-link" href={config.courses.resumeUrl}>Courses</a></li>
-                            <li><a className="nav-link selected" href="/">Settings</a></li>
-                            <li><a className="nav-link" href={config.auth.logoutUrl}>Logout</a></li>
+                            {defaultLinks.map(displayName => {
+                                const link = _.find(config, {displayName});
+                                debugger;
+                                return <li>
+                                    <a className="nav-link selected" href={link.host}>
+                                        {link.displayName}
+                                    </a>
+                                </li>
+                            })}
                         </ul>
                         <a className="nav-link nav-link__mobile"><i alt="Menu" className="burger"></i></a>
                     </nav>
