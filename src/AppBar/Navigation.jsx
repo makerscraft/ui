@@ -1,7 +1,9 @@
 const _  = require('lodash');
+const cx = require('classnames')
 const React = require('react');
 const Masthead = require('./Masthead');
 
+const config = require('./config');
 
 var defaultLinks = [
     'Dashboard', 'Settings', 'Accounts'
@@ -9,9 +11,6 @@ var defaultLinks = [
 
 const Header = React.createClass({
     render() {
-        global;
-        let {config} = this.props;
-
         return (
             <header>
                 <div className="nav-container">
@@ -20,9 +19,13 @@ const Header = React.createClass({
                         <ul className="nav-list">
                             {defaultLinks.map(displayName => {
                                 const link = _.find(config, {displayName});
-                                debugger;
-                                return <li>
-                                    <a className="nav-link selected" href={link.host}>
+                                const className = cx('nav-link', {
+                                    selected: link.displayName ===
+                                        this.props.config.app.displayName
+                                });
+
+                                return link && <li>
+                                    <a className={className} href={link.url}>
                                         {link.displayName}
                                     </a>
                                 </li>
