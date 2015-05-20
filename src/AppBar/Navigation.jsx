@@ -7,7 +7,7 @@ const {Icon} = require('../Icon');
 const {Gravatar} = require('../Gravatar');
 const {Masthead} = require('./Masthead');
 
-const {LinkSet} = require('./LinkSet');
+const linkSet = require('./linkSet');
 
 /**
  * NavLink
@@ -33,6 +33,7 @@ class NavLink extends React.Component {
     }
 }
 
+
 /**
  * AppNav
  * @property {} description
@@ -57,22 +58,17 @@ class AppNav extends React.Component {
         const navClassName = cx(
             'app-nav', {navigation__visible: this.state.isMenuVisible});
 
-        const linkSet = new LinkSet(user);
-
         return (
           <div className="nav-container">
                 <nav className={navClassName} rel="main-navigation">
                     <Masthead className="app-nav-logo"/>
                     <ul className="app-nav-main">
-                        {linkSet.left.map(
-                            (link, key) => <li>
-                                <NavLink key={key} {...link}/></li>)}
-                        {linkSet.right.map(
+                        {linkSet.main.map(
                             (link, key) => <li>
                                 <NavLink key={key} {...link}/></li>)}
                     </ul>
                     <ul className="app-nav-list">
-                        {[].concat(linkSet.left, linkSet.right).map(
+                        {linkSet.main.map(
                             (link, key) => <li>
                                 <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
                         {linkSet.menu.map(
