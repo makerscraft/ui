@@ -81,7 +81,7 @@ class AppNav extends React.Component {
                     </ul>
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
                         <span alt="Menu" className="app-nav-burger"></span>
-                        <Gravatar className="profile-img-placeholder" email={user.tf_login} size={120}/>
+                        <Gravatar className="app-nav-gravatar" email={user.tf_login} size={120}/>
                     </a>
                 </nav>
             </div>
