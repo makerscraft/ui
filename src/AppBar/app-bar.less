@@ -1,0 +1,245 @@
+@import "~tfstyleguide/vars";
+
+.nav-container {
+    position: relative;
+    z-index: 1;
+    color: @white;
+    border-bottom: 1px solid @lightgray;
+    background-color: @blue;
+    margin-bottom: 30px;
+}
+
+.app-nav {
+    position: relative;
+    height: 46px;
+    top: 0px;
+    max-width: @grid-width;
+    margin: 0 auto;
+    z-index: 15;
+}
+
+.app-nav-main {
+    display: none;
+    @media @nonmobile {
+      display: block;
+      padding-left: 30px;
+    }
+    @media @bigger {
+      padding-left: 0;
+    }
+}
+
+.app-nav-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    border-top: 1px solid @blue75;
+    transform: translate(-100%, 46px);
+    transition: transform 0.35s ease,
+                opacity 0.15s ease,
+                max-width 0.35s ease;
+
+    .app-nav-separator {
+      border: none;
+      border-top: 1px solid @blue75;
+      padding-top: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      @media @nonmobile {
+        border-color: @gray25;
+      }
+    }
+
+    @media @nonmobile {
+      transform: translate(0, 46px);
+      max-height: 0;
+      transition: transform 0.35s ease,
+                  opacity 0.15s ease,
+                  max-width 0.35s ease,
+                  max-height 0.15s ease;
+    }
+
+    .navigation__visible & {
+      transform: translate(0px, 46px);
+      max-width: 640px;
+      opacity: 1;
+
+      @media @nonmobile {
+        right: 30px;
+        left: auto;
+        min-width: 176px;
+        max-width: none;
+        max-height: 360px;
+        border: 1px solid @gray25;
+        border-top-color: transparent;
+        box-shadow: 0 1px 2px @gray25;
+      }
+      @media @bigger {
+        right: 0;
+      }
+    }
+}
+
+.app-nav-list li,
+.app-nav-main li {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    list-style: none;
+
+    &::before {
+      content: none;
+      display: none;
+    }
+}
+
+.app-nav-main li {
+    @media @nonmobile {
+      display: inline-block;
+
+      + li {
+        margin-left: 15px;
+      }
+    }
+}
+
+.app-nav-logo {
+    position: absolute;
+    display: inline-block;
+    left: 20px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 0;
+
+    @media @nonmobile {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+}
+
+.app-nav-link {
+    .proxima-light;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 28px;
+    height: 46px; // line-height bugginess.
+    letter-spacing: 0.5px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 0;
+
+    color: @white;
+    background-color: @blue;
+
+    &:hover,
+    &:active,
+    &:focus {
+      // color: @blue25;
+    }
+
+    &:visited,
+    &:focus {
+        outline: none;
+    }
+
+    @media @nonmobile {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      text-align: left;
+      // color: @blue;
+      &:hover,
+      &:active,
+      &:focus {
+        // color: @blue75;
+      }
+    }
+
+    &.app-nav-link__in-menu {
+      @media @nonmobile {
+        color: @blue;
+        background-color: @gray5;
+        text-align: center;
+        transition: color 0.19s ease,
+                    background-color 0.19s ease;
+
+        &:hover {
+          background-color: @blue25;
+          color: @blue125;
+        }
+      }
+    }
+
+    &.app-nav-link__mobile-only {
+      @media @nonmobile {
+        display: none;
+      }
+    }
+
+    &.app-nav-link__toggle {
+      height: 46px;
+      position: absolute;
+      right: 30px;
+      top: 0;
+      padding-right: 20px;
+      padding-left: 20px;
+      cursor: pointer;
+
+      @media @bigger {
+        right: 0;
+      }
+    }
+}
+
+[class^="icon-"].app-nav-icon {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  font-size: 28px;
+  line-height: 28px;
+  vertical-align: middle;
+  padding-right: 4px;
+
+  @media @big {
+    padding-right: 6px;
+  }
+}
+
+.app-nav-burger {
+  &::before {
+    content: "Menu";
+  }
+
+  display: inline-block;
+  min-width: 60px;
+  vertical-align: top;
+  line-height: 28px;
+  padding-right: 15px;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-radius: 1px;
+
+  .navigation__visible & {
+    &::before {
+      content: "Close";
+    }
+  }
+}
+
+.app-nav-gravatar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  margin-top: -1px;
+  background-color: @white;
+  border-radius: 100%;
+}
