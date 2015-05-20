@@ -21,9 +21,15 @@
   "homepage": "https://github.com/Thinkful/ui",
   "dependencies": {
     "react": "^0.13.3",
+    "spark-md5": "0.0.5",
     "tfstyleguide": "^2.0.1"
   },
   "devDependencies": {
-    "react-hot-loader": "^1.2.7"
+    "debug": "^2.2.0",
+    "node-libs-browser": "^0.5.0",
+    "node-notifier": "^4.2.1",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.7",
+    "webpack-dev-server": "^1.8.2"
   }
 }
