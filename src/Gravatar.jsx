@@ -9,11 +9,20 @@ const URL = 'https://www.gravatar.com/avatar';
  */
 class Gravatar extends React.Component {
     static propTypes = {
-        email: React.PropTypes.string.isRequired
+        email: React.PropTypes.string.isRequired,
+        style: React.PropTypes.string,
+        size: React.PropTypes.number
+    }
+
+    static defaultProps = {
+        style: 'retro',
+        size: 200
     }
 
     render() {
-        return <img className={`gravatar ${this.props.className || ''}`} src={`${URL}/${MD5.hash(this.props.email)}?d=retro`}/>
+        return <img
+            className={`gravatar ${this.props.className || ''}`}
+            src={`${URL}/${MD5.hash(this.props.email)}?d=${this.props.style}&s=${this.props.size}`}/>
     }
 }
 
