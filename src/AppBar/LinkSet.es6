@@ -1,46 +1,13 @@
 const config = {
-    accounts: {
-        icon: null
-    }
-,   activity: {
-        icon: null
-    }
-,   courses: {
-        icon: null
-    }
-,   dashboard: {
-        icon: null
-    }
-,   logout: {
-        icon: null
-    }
-,   officeHours: {
+    officeHours: {
         icon: 'users'
-    }
-,   profiles: {
-        icon: null
-    }
-,   progress: {
-        icon: null
-    }
-,   records: {
-        icon: null
-    }
-,   settings: {
-        icon: null
-    }
-,   takeStudent: {
-        icon: null
-    }
-,   'www': {
-        icon: null
     }
 }
 
 if (global.__env.config) {
     let envConfig = global.__env.config;
-    Object.keys(config).forEach(key => {
-        let link = config[key];
+    Object.keys(envConfig).forEach(key => {
+        let link = config[key] = config[key] || {};
         let defaults = envConfig[key] || {};
 
         Object.keys(defaults).forEach(
@@ -66,12 +33,12 @@ class LinkSet {
             }
             else {
                 _.defaults(home, config.dashboard);
-                debugger;
                 this.left.push(config.officeHours);
             }
 
+            this.menu.push(config.dashboard);
             this.menu.push(config.settings);
-            this.menu.push(config.logout)
+            this.menu.push(config.signOut)
         }
 
         this.left.unshift(home);

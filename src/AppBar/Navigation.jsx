@@ -70,14 +70,11 @@ class AppNav extends React.Component {
                     <ul className="app-nav-list">
                         {linkSet.left.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
                         {linkSet.right.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
-
-                        <li><a className="app-nav-link app-nav-link__in-menu" href="/">{config.app.displayName}</a></li>
-                        <li><a className="app-nav-link app-nav-link__in-menu" href={`//${config.settings.host}`}>Settings</a></li>
-                        <li><a className="app-nav-link app-nav-link__in-menu" href={`//${config.accounts.host}/logout`}>Sign out</a></li>
+                        {linkSet.menu.map(link => <li><NavLink className="app-nav-link__in-menu" {...link}/></li>)}
                     </ul>
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
                         <span alt="Menu" className="app-nav-burger"></span>
-                        <Gravatar className="profile-img-placeholder" email={user.tf_login}/>
+                        <Gravatar className="profile-img-placeholder" email={user.tf_login} size={120}/>
                     </a>
                 </nav>
             </div>
