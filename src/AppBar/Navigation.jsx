@@ -72,10 +72,7 @@ class AppNav extends React.Component {
                                 <NavLink key={key} {...link}/></li>)}
                     </ul>
                     <ul className="app-nav-list">
-                        {linkSet.left.map(
-                            (link, key) => <li>
-                                <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
-                        {linkSet.right.map(
+                        {[].concat(linkSet.left, linkSet.right).map(
                             (link, key) => <li>
                                 <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
                         {linkSet.menu.map(
