@@ -8,8 +8,7 @@ let config = {
 }
 
 config = _.mapValues(global.__env.config,
-    (link, key) => _.defaults(config[key], link));
-
+    (link, key) => _.assign({}, link, config[key]));
 
 let home = {displayName: 'Home', icon: 'home'};
 let main = [home]
@@ -33,5 +32,6 @@ else {
     menu.push(config.settings);
     menu.push(config.signOut)
 }
+
 
 module.exports = {main, menu};
