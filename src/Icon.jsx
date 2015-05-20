@@ -6,10 +6,14 @@ const React = require('react');
  * @property {String} Icon the icon class to use
  */
 class Icon extends React.Component {
+    static propTypes = {
+        name: React.PropTypes.string.isRequired
+    }
+
     render() {
         return <span
             aria-hidden="true"
-            className={cx(`icon-${this.props.name}`, this.props.className)}/>
+            className={`icon-${this.props.name} ${this.props.className || ''}`}/>
     }
 }
 
