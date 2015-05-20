@@ -34,9 +34,9 @@ class LinkSet {
             else {
                 _.defaults(home, config.dashboard);
                 this.left.push(config.officeHours);
+                this.menu.push(config.dashboard);
             }
 
-            this.menu.push(config.dashboard);
             this.menu.push(config.settings);
             this.menu.push(config.signOut)
         }
