@@ -2,7 +2,7 @@ const React = require('react');
 
 /**
  * Icon
- * @property {String} Icon the icon class to use
+ * @property {String} name  the icon class to use
  */
 class Icon extends React.Component {
     static propTypes = {
