@@ -64,13 +64,23 @@ class AppNav extends React.Component {
                         <img src="//tf-assets-prod.s3.amazonaws.com/splash/logo/maze_icon_white_28px.svg" alt="Thinkful"/>
                     </a>
                     <ul className="app-nav-main">
-                        {linkSet.left.map(link => <li><NavLink {...link}/></li>)}
-                        {linkSet.right.map(link => <li><NavLink {...link}/></li>)}
+                        {linkSet.left.map(
+                            (link, key) => <li>
+                                <NavLink key={key} {...link}/></li>)}
+                        {linkSet.right.map(
+                            (link, key) => <li>
+                                <NavLink key={key} {...link}/></li>)}
                     </ul>
                     <ul className="app-nav-list">
-                        {linkSet.left.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
-                        {linkSet.right.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
-                        {linkSet.menu.map(link => <li><NavLink className="app-nav-link__in-menu" {...link}/></li>)}
+                        {linkSet.left.map(
+                            (link, key) => <li>
+                                <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
+                        {linkSet.right.map(
+                            (link, key) => <li>
+                                <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
+                        {linkSet.menu.map(
+                            (link, key) => <li>
+                                <NavLink key={key} className="app-nav-link__in-menu" {...link}/></li>)}
                     </ul>
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
                         <span alt="Menu" className="app-nav-burger"></span>
