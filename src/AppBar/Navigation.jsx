@@ -2,8 +2,10 @@ const _  = require('lodash');
 const cx = require('classnames')
 const React = require('react');
 
+// TUI Components
 const {Icon} = require('../Icon');
 const {Gravatar} = require('../Gravatar');
+const {Masthead} = require('./Masthead');
 
 const {LinkSet} = require('./LinkSet');
 
@@ -60,9 +62,7 @@ class AppNav extends React.Component {
         return (
           <div className="nav-container">
                 <nav className={navClassName} rel="main-navigation">
-                    <a className="app-nav-logo" href="/">
-                        <img src="//tf-assets-prod.s3.amazonaws.com/splash/logo/maze_icon_white_28px.svg" alt="Thinkful"/>
-                    </a>
+                    <Masthead className="app-nav-logo"/>
                     <ul className="app-nav-main">
                         {linkSet.left.map(
                             (link, key) => <li>
