@@ -1,43 +1,88 @@
 const _  = require('lodash');
 const cx = require('classnames')
 const React = require('react');
-const Masthead = require('./Masthead');
 
-const config = require('./config');
+const {Icon} = require('../Icon');
+const {Gravatar} = require('../Gravatar');
 
-var defaultLinks = [
-    'Dashboard', 'Settings', 'Accounts'
-]
+const {LinkSet} = require('./LinkSet');
 
-const Header = React.createClass({
-    render() {
-        return (
-            <header>
-                <div className="nav-container">
-                    <nav className="top-nav" rel="main-navigation">
-                        <Masthead/>
-                        <ul className="nav-list">
-                            {defaultLinks.map(displayName => {
-                                const link = _.find(config, {displayName});
-                                const className = cx('nav-link', {
-                                    selected: link.displayName ===
-                                        this.props.config.app.displayName
-                                });
-
-                                return link && <li>
-                                    <a className={className} href={link.url}>
-                                        {link.displayName}
-                                    </a>
-                                </li>
-                            })}
-                        </ul>
-                        <a className="nav-link nav-link__mobile"><i alt="Menu" className="burger"></i></a>
-                    </nav>
-                </div>
-            </header>
-        );
+/**
+ * NavLink
+ * @property {} description
+ */
+class NavLink extends React.Component {
+    static propTypes = {
+        displayName: React.PropTypes.string,
+        icon: React.PropTypes.string,
+        url: React.PropTypes.string.isRequired
     }
 
-});
+    render() {
+        const {url, className, displayName, icon} = this.props;
+        return (
+            <a className={cx(className, "app-nav-link")} href={url}>
+                {icon &&
+                    <Icon className="app-nav-icon" name={icon}/>}
+                {displayName &&
+                    <span className="app-nav-text">{displayName}</span>}
+            </a>
+        )
+    }
+}
 
-module.exports = Header;
+/**
+ * AppNav
+ * @property {} description
+ */
+class AppNav extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isMenuVisible: false
+        };
+    }
+
+    toggleMenu() {
+        this.setState({
+            isMenuVisible: ! this.state.isMenuVisible
+        });
+    }
+
+    render() {
+        const {user, config} = this.props;
+        const navClassName = cx(
+            'app-nav', {navigation__visible: this.state.isMenuVisible});
+
+        const linkSet = new LinkSet(user);
+
+        return (
+          <div className="nav-container">
+                <nav className={navClassName} rel="main-navigation">
+                    <a className="app-nav-logo" href="/">
+                        <img src="//tf-assets-prod.s3.amazonaws.com/splash/logo/maze_icon_white_28px.svg" alt="Thinkful"/>
+                    </a>
+                    <ul className="app-nav-main">
+                        {linkSet.left.map(link => <li><NavLink {...link}/></li>)}
+                        {linkSet.right.map(link => <li><NavLink {...link}/></li>)}
+                    </ul>
+                    <ul className="app-nav-list">
+                        {linkSet.left.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
+                        {linkSet.right.map(link => <li><NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
+
+                        <li><a className="app-nav-link app-nav-link__in-menu" href="/">{config.app.displayName}</a></li>
+                        <li><a className="app-nav-link app-nav-link__in-menu" href={`//${config.settings.host}`}>Settings</a></li>
+                        <li><a className="app-nav-link app-nav-link__in-menu" href={`//${config.accounts.host}/logout`}>Sign out</a></li>
+                    </ul>
+                    <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
+                        <span alt="Menu" className="app-nav-burger"></span>
+                        <Gravatar className="profile-img-placeholder" email={user.tf_login}/>
+                    </a>
+                </nav>
+            </div>
+        )
+    }
+}
+
+module.exports = AppNav;
