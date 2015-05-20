@@ -1,8 +1,8 @@
 {
-  "name": "tfui",
-  "version": "0.0.0",
+  "name": "thinkful-ui",
+  "version": "0.0.1",
   "description": "Shared navigation and UI resources for Thinkful.",
-  "main": "index.js",
+  "main": "src/index.es6",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,18 @@
   "bugs": {
     "url": "https://github.com/Thinkful/ui/issues"
   },
-  "homepage": "https://github.com/Thinkful/ui"
+  "homepage": "https://github.com/Thinkful/ui",
+  "dependencies": {
+    "react": "^0.13.3",
+    "spark-md5": "0.0.5",
+    "tfstyleguide": "^2.0.1"
+  },
+  "devDependencies": {
+    "debug": "^2.2.0",
+    "node-libs-browser": "^0.5.0",
+    "node-notifier": "^4.2.1",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.7",
+    "webpack-dev-server": "^1.8.2"
+  }
 }
