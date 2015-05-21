@@ -39,6 +39,11 @@ class NavLink extends React.Component {
  * @property {} description
  */
 class AppNav extends React.Component {
+    static propTypes = {
+        user: React.PropTypes.object.isRequired,
+        config: React.PropTypes.object.isRequired
+    }
+
     constructor(props) {
         super(props);
 
