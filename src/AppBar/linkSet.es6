@@ -18,20 +18,27 @@ if(! user) {
     _.defaults(home, config.www);
 }
 else {
-    if (user.role === 'mentor') {
-        _.defaults(home, config.activity);
-        menu.push(config.takeStudent);
-    }
-    else if (user.student_type === 'core') {
-        _.defaults(home, config.courses);
-        menu.push(config.courses);
+    main.push(config.officeHours);
+
+    if (user.role === 'admin' || user.role === 'mentor') {
+        menu.push(config.activity)
+
+        if (user.role === 'mentor') {
+            _.defaults(home, config.activity);
+            menu.push(config.takeStudent);
+        }
     }
     else {
-        _.defaults(home, config.dashboard);
-        menu.push(config.dashboard);
+        if (user.student_type === 'core') {
+            _.defaults(home, config.courses);
+            menu.push(config.courses);
+        }
+        else {
+            _.defaults(home, config.dashboard);
+            menu.push(config.dashboard);
+        }
     }
 
-    main.push(config.officeHours);
 
     menu.push(config.settings);
     menu.push(config.signOut)
