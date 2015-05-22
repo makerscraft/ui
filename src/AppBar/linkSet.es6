@@ -23,6 +23,10 @@ else {
     if (user.role === 'admin' || user.role === 'mentor') {
         menu.push(config.activity)
 
+        if (user.role === 'admin') {
+            _.defaults(home, config.dashboard);
+        }
+
         if (user.role === 'mentor') {
             _.defaults(home, config.activity);
             menu.push(config.takeStudent);
