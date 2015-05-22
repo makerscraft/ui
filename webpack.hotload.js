@@ -6,8 +6,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
 module.exports = function (webpackConfig) {
-    var NAME = process.env.HAS_SKELETON_ENV || "peacock";
-    var PORT = process.env.HOTLOAD_PORT || 8888; // lucky 8's
+    var NAME = webpackConfig.displayName;
+    var PORT = webpackConfig.hotloadPort;
     var HOST = "http://localhost:" + PORT;
 
     var log = debug('webpack:dev');
@@ -20,10 +20,10 @@ module.exports = function (webpackConfig) {
 
             try {
                 notifier.notify({
-                    title: error.module.rawRequest.replace('.', process.env.APP_NAME),
+                    title: NAME + ' ' + error.module.rawRequest,
                     message: error.error.message.split(': ').join('\n')
-                });
-            } catch (e) { console.log(e.message); }
+                })
+            } catch (e) { console.log(e.message) }
         });
     });
 
