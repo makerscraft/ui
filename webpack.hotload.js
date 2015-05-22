@@ -20,7 +20,7 @@ module.exports = function (webpackConfig) {
 
             try {
                 notifier.notify({
-                    title: webpackConfig.displayName + ' ' + error.module.rawRequest,
+                    title: NAME + ' ' + error.module.rawRequest,
                     message: error.error.message.split(': ').join('\n')
                 })
             } catch (e) { console.log(e.message) }
