@@ -34,7 +34,11 @@ module.exports = function (options) {
       test: /\.less$/,
       loader:
         ExtractTextPlugin.extract(
-          'css!autoprefixer!less', { publicPath: './static/build/' }) }
+          'css!autoprefixer!less', { publicPath: './static/build/' }) },
+
+    markdown: {
+      test: /\.md$/,
+      loader: 'html!markdown'}
   }
 
   var webpackConfig = {
@@ -50,7 +54,8 @@ module.exports = function (options) {
       loaders: [
         loaders.es6,
         loaders.json,
-        loaders.less] },
+        loaders.less,
+        loaders.markdown] },
     output: {
       path: path.join(options.__dirname, options.output.publicPath + '/build/'),
       publicPath: options.output.publicPath,
