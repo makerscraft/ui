@@ -21,11 +21,9 @@ else {
     main.push(config.officeHours);
 
     if (user.role === 'admin' || user.role === 'mentor') {
-        menu.push(config.activity)
+        menu.push(config.activity);
 
-        if (user.role === 'admin') {
-            _.defaults(home, config.dashboard);
-        }
+        // if (user.role === 'admin') {}
 
         if (user.role === 'mentor') {
             _.defaults(home, config.activity);
@@ -38,11 +36,11 @@ else {
             menu.push(config.courses);
         }
         else {
-            _.defaults(home, config.dashboard);
             menu.push(config.dashboard);
         }
     }
 
+    _.defaults(home, config.dashboard);
 
     menu.push(config.settings);
     menu.push(config.signOut)
