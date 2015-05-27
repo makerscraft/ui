@@ -1,4 +1,6 @@
-const _ = require('lodash');
+const assign = require('lodash/object/assign');
+const defaults = require('lodash/object/defaults');
+const mapValues = require('lodash/object/mapValues');
 
 let user = global.__env.user;
 let config = {
@@ -7,15 +9,15 @@ let config = {
     }
 }
 
-config = _.mapValues(global.__env.config,
-    (link, key) => _.assign({}, link, config[key]));
+config = mapValues(global.__env.config,
+    (link, key) => assign({}, link, config[key]));
 
 let home = {displayName: 'Home', icon: 'home'};
 let main = [home]
 let menu = [];
 
 if(! user) {
-    _.defaults(home, config.www);
+    defaults(home, config.www);
 }
 else {
     main.push(config.officeHours);
@@ -26,13 +28,13 @@ else {
         // if (user.role === 'admin') {}
 
         if (user.role === 'mentor') {
-            _.defaults(home, config.activity);
+            defaults(home, config.activity);
             menu.push(config.takeStudent);
         }
     }
     else {
         if (user.student_type === 'core') {
-            _.defaults(home, config.courses);
+            defaults(home, config.courses);
             menu.push(config.courses);
         }
         else {
@@ -40,7 +42,7 @@ else {
         }
     }
 
-    _.defaults(home, config.dashboard);
+    defaults(home, config.dashboard);
 
     menu.push(config.settings);
     menu.push(config.signOut)
