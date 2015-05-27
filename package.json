@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Thinkful/ui",
   "dependencies": {
     "react": "^0.13.3",
+    "remarkable-loader": "^0.1.0",
     "spark-md5": "0.0.5",
     "tfstyleguide": "^2.0.1"
   },
