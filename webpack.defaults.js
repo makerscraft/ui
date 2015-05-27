@@ -38,7 +38,7 @@ module.exports = function (options) {
 
     markdown: {
       test: /\.md$/,
-      loader: 'html!markdown'}
+      loaders: 'remarkable'}
   }
 
   var webpackConfig = {
@@ -64,6 +64,10 @@ module.exports = function (options) {
       // Adds support for 'require(*.less)' from '.jsx' files
       new ExtractTextPlugin(
           'style', 'main.css', { disable: false, allChunks: true })],
+    remarkable: {
+      preset: 'full',
+      html: true
+    },
     resolve: {
       extensions: ['', '.js', '.jsx', '.es', '.es6'],
       alias: {app: path.join(options.__dirname, 'client')}
