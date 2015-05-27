@@ -38,7 +38,7 @@ module.exports = function (options) {
 
     markdown: {
       test: /\.md$/,
-      loaders: 'remarkable'}
+      loaders: 'html!remarkable'}
   }
 
   var webpackConfig = {
