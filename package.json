@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Thinkful/ui",
   "dependencies": {
+    "lodash": "^3.9.3",
     "react": "^0.13.3",
     "spark-md5": "0.0.5",
     "tfstyleguide": "^2.0.1"
