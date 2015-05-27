@@ -64,7 +64,7 @@ class AppNav extends React.Component {
             'app-nav', {navigation__visible: this.state.isMenuVisible});
 
         return (
-          <div className="nav-container">
+          <div className="app-nav-container">
                 <nav className={navClassName} rel="main-navigation">
                     <Masthead className="app-nav-logo"/>
                     <ul className="app-nav-main">
