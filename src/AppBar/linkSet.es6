@@ -22,27 +22,29 @@ if(! user) {
 else {
     main.push(config.officeHours);
 
-    if (user.role === 'admin' || user.role === 'mentor') {
+    if (/admin|mentor/.test(user.role)) {
         menu.push(config.activity);
+        menu.push(config.takeStudent);
+        menu.push(config.courses);
 
-        // if (user.role === 'admin') {}
+        if (/admin/.test(user.role)) {
+            defaults(home, config.dashboard);
+        }
 
-        if (user.role === 'mentor') {
-            defaults(home, config.activity);
-            menu.push(config.takeStudent);
+        if (/mentor/.test(user.role)) {
+            defaults(home, config.courses);
         }
     }
     else {
-        if (user.student_type === 'core') {
+        if (/core/.test(user.student_type)) {
             defaults(home, config.courses);
             menu.push(config.courses);
         }
         else {
+            defaults(home, config.dashboard);
             menu.push(config.dashboard);
         }
     }
-
-    defaults(home, config.dashboard);
 
     menu.push(config.settings);
     menu.push(config.signOut)
