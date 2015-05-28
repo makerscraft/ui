@@ -1,3 +1,3 @@
-module.exports = {
-    AppBar: require('./AppBar')
-}
+const {AppBar} = require('./AppBar');
+
+module.exports = {AppBar}
