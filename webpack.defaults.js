@@ -1,16 +1,14 @@
 'use strict';
-
 var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+
 module.exports = function (options) {
   options = _.defaults({}, options, {
     __dirname: __dirname,
-    displayName: 'TUI',
-    entry: ['./client/index.jsx'],
-    hotloadPort: process.env.HOTLOAD_PORT || 8888
+    entry: ['./client/index.es6']
   });
 
   options.output = _.defaults({}, options.output, {
@@ -42,11 +40,6 @@ module.exports = function (options) {
   }
 
   var webpackConfig = {
-    // Hotload Specific Config
-    displayName: options.displayName,
-    hotloadPort: options.hotloadPort,
-
-    // Standard Webpack Config
     cache: true,
     devtool: 'source-map',
     entry: options.entry,
@@ -64,15 +57,19 @@ module.exports = function (options) {
       // Adds support for 'require(*.less)' from '.jsx' files
       new ExtractTextPlugin(
           'style', 'main.css', { disable: false, allChunks: true })],
-    remarkable: {
-      preset: 'full',
-      html: true
-    },
     resolve: {
       extensions: ['', '.js', '.jsx', '.es', '.es6'],
       alias: {app: path.join(options.__dirname, 'client')}
     },
-    target: 'web'
+    resolveLoader: {
+      root: path.join(__dirname, 'node_modules')},
+    target: 'web',
+
+    // Loader specific customization
+    remarkable: {
+      preset: 'full',
+      html: true
+    }
   };
 
   if (HOTLOAD) {
