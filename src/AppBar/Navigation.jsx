@@ -52,9 +52,22 @@ class AppNav extends React.Component {
         };
     }
 
+    hideMenu() {
+        this.setState({
+            isMenuVisible: false
+        });
+    }
+
     toggleMenu() {
         this.setState({
             isMenuVisible: ! this.state.isMenuVisible
+        });
+    }
+
+    componentDidMount() {
+        const bodyTag = window.querySelector('html');
+        bodyTag.addEventHandler("click", function(e) {
+            console.log(e);
         });
     }
 
