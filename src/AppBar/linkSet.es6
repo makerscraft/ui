@@ -49,6 +49,7 @@ else {
         }
     }
 
+    menu.push(config.slack);
     menu.push(config.settings);
     menu.push(config.signOut)
 }
