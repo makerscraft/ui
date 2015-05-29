@@ -27,13 +27,14 @@ else {
         menu.push(config.activity);
         main.push(config.officeHours);
         menu.push(config.takeStudent);
-        menu.push(config.courses);
 
         if (/admin/.test(user.role)) {
+            menu.push(config.courses);
             defaults(home, config.dashboard);
         }
 
         if (/mentor/.test(user.role)) {
+            // TODO: Deprecate eagle for mentors, default => dashboard.
             defaults(home, config.courses);
         }
     }
