@@ -80,10 +80,12 @@ class AppNav extends React.Component {
                             (link, key) => <li>
                                 <NavLink key={key} className="app-nav-link__in-menu" {...link}/></li>)}
                     </ul>
+                    {user &&
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
                         <span alt="Menu" className="app-nav-burger"></span>
                         <Gravatar className="app-nav-gravatar" email={user.tf_login} size={120}/>
                     </a>
+                    }
                 </nav>
             </div>
         )
