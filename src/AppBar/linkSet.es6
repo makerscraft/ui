@@ -6,6 +6,9 @@ let user = global.__env.user;
 let config = {
     officeHours: {
         icon: 'users'
+    },
+    activity: {
+        icon: 'user'
     }
 }
 
@@ -20,10 +23,9 @@ if(! user) {
     defaults(home, config.www);
 }
 else {
-    main.push(config.officeHours);
-
     if (/admin|mentor/.test(user.role)) {
         menu.push(config.activity);
+        main.push(config.officeHours);
         menu.push(config.takeStudent);
         menu.push(config.courses);
 
@@ -35,7 +37,8 @@ else {
             defaults(home, config.courses);
         }
     }
-    else {
+    else { // Student links
+        main.push(config.officeHours);
         if (/core/.test(user.student_type)) {
             defaults(home, config.courses);
             menu.push(config.courses);
