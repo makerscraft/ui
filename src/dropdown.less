@@ -1,0 +1,57 @@
+@import '~tfstyleguide/vars';
+
+.button.button__white.dd-button {
+  width: 420px;
+  max-width: 100%;
+  position: relative;
+  text-align: left;
+  color: @gray75;
+
+  &:focus, &:hover, &:active, &:visited {
+    outline: none;
+    background-color: @white;
+    color: @gray75;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    right: 15px;
+    top: 18px;
+    border-top: 9px solid @gray75;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+  }
+  
+  p {
+    text-align: left;
+    color: @gray75;
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+    
+  .dd-open {
+    margin-top: 15px;
+    margin-left: -1em;
+    margin-right: -1em;
+    max-height: 300px;
+    overflow: scroll;
+    border-top: 1px solid @gray15;
+    p {
+      font-size: 16px;
+      padding-top: 7px;
+      padding-bottom: 8px;
+      padding-left: 1em;
+      padding-right: 1em;
+      &:hover {
+        background-color: @gray5;
+      }
+    }
+  }
+
+  &.button.button__white:hover {
+    background-color: @white;
+  }
+}

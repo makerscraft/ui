@@ -5,9 +5,10 @@ var notifier = require('node-notifier');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
-module.exports = function (webpackConfig) {
-    var NAME = webpackConfig.displayName;
-    var PORT = webpackConfig.hotloadPort;
+module.exports = function (webpackConfig, options) {
+    options = options || {};
+    var NAME = webpackConfig.displayName || options.displayName;
+    var PORT = webpackConfig.hotloadPort || options.hotloadPort || 8888;
     var HOST = "http://localhost:" + PORT;
 
     var log = debug('webpack:dev');
