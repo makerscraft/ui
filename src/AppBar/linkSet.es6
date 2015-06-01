@@ -42,11 +42,9 @@ else {
         main.push(config.officeHours);
         if (/core/.test(user.student_type)) {
             defaults(home, config.courses);
-            menu.push(config.courses);
         }
         else {
             defaults(home, config.dashboard);
-            menu.push(config.dashboard);
         }
     }
 
