@@ -1,3 +1,4 @@
 const {AppBar} = require('./AppBar');
+const {Dropdown} = require('./Dropdown');
 
-module.exports = {AppBar}
+module.exports = {AppBar, Dropdown}
