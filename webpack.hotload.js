@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
 module.exports = function (webpackConfig, options) {
+    options = options || {};
     var NAME = webpackConfig.displayName || options.displayName;
     var PORT = webpackConfig.hotloadPort || options.hotloadPort || 8888;
     var HOST = "http://localhost:" + PORT;
