@@ -7,12 +7,19 @@ require('./dropdown.less');
 /**
  * Shared dropdown menu element
  * @property data {Array} of items to display in the dropdown,
-      containing (optional) `slug` and `displayName`
+      containing `value` and `displayName`
  * @property selectedInd {Int} of the selected index in the list
  * @property defaultDisplay {String} of default value that should be displayed
  * @property handleChange {Function} to handle dropdown click/change
  */
 const Dropdown = React.createClass({
+
+  propTypes: {
+    data: React.PropTypes.array.isRequired,
+    selectedInd: React.PropTypes.number,
+    defaultDisplay: React.PropTypes.string,
+    handleChange: React.PropTypes.func.isRequired
+  },
 
   getInitialState() {
     return {open: false};
@@ -37,13 +44,13 @@ const Dropdown = React.createClass({
   },
 
   _generateNodes() {
-    let {data} = this.props;
+    const {data} = this.props;
     return data.map((item, ind) => {
       return (
         <p
           className="dropdown-item"
           id={ind}
-          data-slug={item.slug}>
+          value={item.value}>
           {item.displayName}
         </p>
       );
@@ -65,25 +72,23 @@ const Dropdown = React.createClass({
   },
 
   render() {
-    const nodes = this._generateNodes();
     let {selectedInd, data, defaultDisplay} = this.props;
 
-    let buttonClasses = classnames(
-      'button', 'button__white', 'dd-button');
-    let dropdownClasses = classnames(
+    const buttonClasses = classnames('button', 'button__white', 'dd-button');
+    const dropdownClasses = classnames(
       'dd-open',
       {'hidden': !this.state.open});
 
     return (
       <button
-        className={buttonClasses}
-        onClick={this._toggleOpen}
-        data-clickable>
+          className={buttonClasses}
+          onClick={this._toggleOpen}
+          data-clickable>
         {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
         <div
           className={dropdownClasses}
           onClick={this._handleChange}>
-          {nodes}
+          {this._generateNodes()}
         </div>
       </button>
     );
