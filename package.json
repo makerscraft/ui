@@ -19,6 +19,12 @@
     "url": "https://github.com/Thinkful/ui/issues"
   },
   "homepage": "https://github.com/Thinkful/ui",
+  "contributors": [
+    {
+      "email": "learykara@gmail.com",
+      "name": "Kara Leary"
+    }
+  ],
   "dependencies": {
     "classnames": "^2.1.1",
     "lodash": "^3.9.3",
