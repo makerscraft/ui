@@ -58,21 +58,38 @@ class AppNav extends React.Component {
         });
     }
 
+    handleMouseLeave(event) {
+        clearTimeout(this.mouseTimeout);
+        this.mouseTimeout = setTimeout(() => {this._hideMenu()}, 360);
+    }
+
+    handleMouseEnter(event) {
+        if (this.mouseTimeout) {
+            clearTimeout(this.mouseTimeout);
+        }
+    }
+
+    _hideMenu() {
+        this.setState({ isMenuVisible: false });
+    }
+
     render() {
         const {user, config} = this.props;
         const navClassName = cx(
-            'app-nav', {navigation__visible: this.state.isMenuVisible});
+            'app-nav', {'app-nav__visible': this.state.isMenuVisible});
 
         return (
           <div className="app-nav-container">
-                <nav className={navClassName} rel="main-navigation">
+                <nav onMouseLeave={this.handleMouseLeave.bind(this)}
+                     className={navClassName} rel="main-navigation">
                     <Masthead className="app-nav-logo"/>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
                             (link, key) => <li>
                                 <NavLink key={key} {...link}/></li>)}
                     </ul>
-                    <ul className="app-nav-list">
+                    <ul onMouseEnter={this.handleMouseEnter.bind(this)}
+                        className="app-nav-list">
                         {linkSet.main.map(
                             (link, key) => <li>
                                 <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}

@@ -40,8 +40,9 @@
     border-top: 1px solid @blue75;
     transform: translate(-100%, 46px);
     transition: transform 0.35s ease,
-                opacity 0.15s ease,
-                max-width 0.35s ease;
+                opacity 0.28s ease,
+                max-width 0.35s ease,
+                max-height 0.22s ease;
 
     .app-nav-separator {
       border: none;
@@ -56,33 +57,30 @@
     }
 
     @media @nonmobile {
+      right: 30px;
+      left: auto;
+      min-width: 176px;
+      max-height: 0px;
+      border: 1px solid @gray25;
+      border-top-color: transparent;
+      box-shadow: 0 1px 2px @gray25;
+
       transform: translate(0, 46px);
-      max-height: 0;
-      transition: transform 0.35s ease,
-                  opacity 0.15s ease,
-                  max-width 0.35s ease,
-                  max-height 0.15s ease;
     }
 
+    @media @bigger {
+      right: 0;
+    }
 }
 
-.navigation__visible .app-nav-list {
+.app-nav__visible .app-nav-list {
   transform: translate(0px, 46px);
   max-width: 640px;
   opacity: 1;
 
   @media @nonmobile {
-    right: 30px;
-    left: auto;
-    min-width: 176px;
     max-width: none;
     max-height: 360px;
-    border: 1px solid @gray25;
-    border-top-color: transparent;
-    box-shadow: 0 1px 2px @gray25;
-  }
-  @media @bigger {
-    right: 0;
   }
 }
 
@@ -229,7 +227,7 @@
 
 }
 
-.navigation__visible .app-nav-burger {
+.app-nav__visible .app-nav-burger {
   &::before {
     content: "Close";
   }
