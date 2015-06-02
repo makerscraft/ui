@@ -8,7 +8,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function (options) {
   options = _.defaults({}, options, {
     __dirname: __dirname,
-    entry: ['./client/index.es6']
+    entry: ['./client/index.es6'],
+    hotloadPort: 8888
   });
 
   options.output = _.defaults({}, options.output, {
@@ -64,6 +65,10 @@ module.exports = function (options) {
     resolveLoader: {
       root: path.join(__dirname, 'node_modules')},
     target: 'web',
+
+    // Hotload specific customization
+    displayName: options.displayName,
+    hotloadPort: options.hotloadPort,
 
     // Loader specific customization
     remarkable: {
