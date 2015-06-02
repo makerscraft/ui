@@ -5,10 +5,9 @@ var notifier = require('node-notifier');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
-module.exports = function (webpackConfig, options) {
-    options = options || {};
-    var NAME = webpackConfig.displayName || options.displayName;
-    var PORT = webpackConfig.hotloadPort || options.hotloadPort || 8888;
+module.exports = function (webpackConfig) {
+    var NAME = webpackConfig.displayName;
+    var PORT = webpackConfig.hotloadPort;
     var HOST = "http://localhost:" + PORT;
 
     var log = debug('webpack:dev');
@@ -30,9 +29,10 @@ module.exports = function (webpackConfig, options) {
 
     var server = new WebpackDevServer(compiler, {
         contentBase: HOST,
-        publicPath: webpackConfig.output.publicPath,
-        noInfo: true,
+        headers: { 'Access-Control-Allow-Origin': '*' },
         hot: true,
+        noInfo: true,
+        publicPath: webpackConfig.output.publicPath,
         quiet: true
     });
 
