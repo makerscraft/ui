@@ -13,13 +13,17 @@
   "keywords": [
     "Thinkful"
   ],
-  "author": "Thinkful <evan@thinkful.com>",
+  "author": "Thinkful <engineering@thinkful.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Thinkful/ui/issues"
   },
   "homepage": "https://github.com/Thinkful/ui",
   "contributors": [
+    {
+      "email": "evanrs@gmail.com",
+      "name": "Evan Schneider"
+    },
     {
       "email": "learykara@gmail.com",
       "name": "Kara Leary"
