@@ -76,7 +76,7 @@ class AppNav extends React.Component {
     render() {
         const {user, config} = this.props;
         const navClassName = cx(
-            'app-nav', {navigation__visible: this.state.isMenuVisible});
+            'app-nav', {'app-nav__visible': this.state.isMenuVisible});
 
         return (
           <div className="app-nav-container">
