@@ -22,9 +22,11 @@ class NavLink extends React.Component {
     }
 
     render() {
-        const {url, active, className, displayName, icon} = this.props;
+        const {url, active, className, external, displayName, icon} = this.props;
         return (
-            <a className={cx({active}, className, "app-nav-link")} href={url}>
+            <a className={cx({active}, className, "app-nav-link")}
+               href={url}
+               target={external && "_blank"}>
                 {icon &&
                     <Icon className="app-nav-icon" name={icon}/>}
                 {displayName &&
