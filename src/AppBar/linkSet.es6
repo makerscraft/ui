@@ -1,3 +1,4 @@
+const compact = require('lodash/array/compact');
 const assign = require('lodash/object/assign');
 const defaults = require('lodash/object/defaults');
 const mapValues = require('lodash/object/mapValues');
@@ -50,11 +51,20 @@ else {
 
     menu.push(config.slack);
     menu.push(config.settings);
-    menu.push(config.signOut)
+    menu.push(config.support);
+    menu.push(config.signOut);
 }
 
-[].concat(main, menu).forEach(function (item) {
-    item.active = new RegExp(item.url, 'gi').test(location.toString());
-});
+main = compact(main);
+menu = compact(menu);
+
+try {
+    let url = location.toString();
+    let domain = location.hostname.split('.').slice(-2).join('.');
+    [].concat(main, menu).forEach(function (item) {
+        item.active = new RegExp(item.url, 'gi').test(url);
+        item.external = ! new RegExp(domain, 'gi').test(item.url);
+    });
+} catch (e) {}
 
 module.exports = {main, menu};
