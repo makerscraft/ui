@@ -53,5 +53,8 @@ else {
     menu.push(config.signOut)
 }
 
+[].concat(main, menu).forEach(function (item) {
+    item.active = new RegExp(item.url, 'gi').test(location.toString());
+});
 
 module.exports = {main, menu};
