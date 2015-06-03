@@ -15,15 +15,18 @@ const linkSet = require('./linkSet');
  */
 class NavLink extends React.Component {
     static propTypes = {
+        active: React.PropTypes.bool,
         displayName: React.PropTypes.string,
         icon: React.PropTypes.string,
         url: React.PropTypes.string.isRequired
     }
 
     render() {
-        const {url, className, displayName, icon} = this.props;
+        const {url, active, className, external, displayName, icon} = this.props;
         return (
-            <a className={cx(className, "app-nav-link")} href={url}>
+            <a className={cx({active}, className, "app-nav-link")}
+               href={url}
+               target={external && "_blank"}>
                 {icon &&
                     <Icon className="app-nav-icon" name={icon}/>}
                 {displayName &&
