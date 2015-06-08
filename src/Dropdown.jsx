@@ -80,7 +80,7 @@ const Dropdown = React.createClass({
       {'hidden': !this.state.open});
 
     return (
-      <button
+      <div
           className={buttonClasses}
           onClick={this._toggleOpen}
           data-clickable>
@@ -90,7 +90,7 @@ const Dropdown = React.createClass({
           onClick={this._handleChange}>
           {this._generateNodes()}
         </div>
-      </button>
+      </div>
     );
   }
 });
