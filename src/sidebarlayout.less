@@ -52,3 +52,43 @@
     left: -3px;
   }
 }
+
+.menu-item {
+  .body-text-small;
+  display: block;
+  margin-bottom: 0;
+  cursor: pointer;
+  margin-left: -26px;
+
+  .icon-navigateright {
+    color: @blue;
+    transition: opacity .2s ease-in-out;
+    vertical-align: middle;
+    margin-right: 10px;
+    opacity: 0;
+  }
+
+  &.active-topic {
+    .proxima-bold;
+    position: relative;
+
+    .icon-navigateright {
+      opacity: 1;
+    }
+  }
+
+  &a, a& {
+    color: @black;
+    &:hover {
+      color: @black;
+    }
+  }
+}
+
+.menu-item-parent {
+  color: @black;
+  &:hover {
+    color: @black;
+  }
+}
+

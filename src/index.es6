@@ -1,5 +1,5 @@
 const {AppBar} = require('./AppBar');
 const {Dropdown} = require('./Dropdown');
-const {SidebarLayout} = require('./SidebarLayout');
+const {SidebarLayout, MenuItem} = require('./SidebarLayout');
 
-module.exports = {AppBar, Dropdown, SidebarLayout};
+module.exports = {AppBar, Dropdown, SidebarLayout, MenuItem};
