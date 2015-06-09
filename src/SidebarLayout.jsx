@@ -7,13 +7,13 @@ require('./sidebarlayout.less');
 /**
  *  Menu item element
  *  @property displayName {String} of the display name of the item
- *  @property classes {Array} of class names
+ *  @property classes {String/Object/Array} of classes
  *  @property isActive {Boolean} indictaing if the item is currently active
  */
 class MenuItem extends React.Component {
   render() {
     const {displayName, classes, isActive} = this.props;
-    const itemClasses = classnames(classes, 'menu-item', {'active-topic': isActive});
+    const itemClasses = classnames(classes, 'menu-item', {'menu-item__active': isActive});
 
     return (
       <div className={itemClasses}>
@@ -40,7 +40,7 @@ class SidebarMenu extends React.Component {
 
     return (
       <div className="sidebar-menu">
-        <p className="heading-small">{heading}</p>
+        <div className="heading-small">{heading}</div>
         {items}
       </div>
     );
@@ -49,9 +49,7 @@ class SidebarMenu extends React.Component {
 
 /**
  *  Base layout for pages that have a sidebar element.
- *  @property sidebarMenuSets {Array} of objects of the menu sets to include.
- *    @property heading {String} of the heading to display above the menu
- *    @property items {Array} of components to include in the menu
+ *  @property sidebarMenuSets {Array} of objects indicating a SidebarMenu
  */
 class SidebarLayout extends React.Component {
   render() {

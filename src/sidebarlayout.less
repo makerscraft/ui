@@ -62,13 +62,13 @@
 
   .icon-navigateright {
     color: @blue;
-    transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease;
     vertical-align: middle;
     margin-right: 10px;
     opacity: 0;
   }
 
-  &.active-topic {
+  &.menu-item__active {
     .proxima-bold;
     position: relative;
 
@@ -77,7 +77,7 @@
     }
   }
 
-  &a, a& {
+  a& {
     color: @black;
     &:hover {
       color: @black;
