@@ -31,3 +31,24 @@
 	padding-left: @column-px;
 	padding-top: 60px;
 }
+
+.sidebar-menu {
+	margin-bottom: 45px;
+}
+
+.heading-small {
+	font-size: 14px;
+  color: @gray50;
+  text-transform: uppercase;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: @gray15;
+    bottom: -15px;
+    left: -3px;
+  }
+}
