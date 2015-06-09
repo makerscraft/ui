@@ -4,14 +4,19 @@ const classnames = require('classnames');
 require('./styles/sidebarlayout.less');
 
 class SidebarLayout extends React.Component {
+  static propTypes = {
+    sidebar: React.PropTypes.component.isRequired
+  }
+
   render() {
+    const {sidebar} = this.props;
     return (
       <article className="sidebar-layout-container">
         <aside className="sidebar-layout-sidebar">
-          {this.props.children[0]}
+          {sidebar}
         </aside>
         <section className="sidebar-layout-main">
-          {this.props.children.slice(1)}
+          {this.props.children}
         </section>
       </article>
     );
