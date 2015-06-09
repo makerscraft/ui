@@ -5,19 +5,15 @@ require('./styles/sidebarlayout.less');
 
 const SidebarLayout = React.createClass({
   render() {
-    const {sidebarContent, mainContent, sidebarClasses, mainClasses} = this.props;
-    const sidebarClassNames = classnames('sidebar', sidebarClasses);
-    const mainClassNames = classnames('main', mainClasses);
-
     return (
-      <div className="sidebar-layout-container">
-        <div className={sidebarClassNames}>
-          {sidebarContent}
-        </div>
-        <div className={mainClassNames}>
-          {mainContent}
-        </div>
-      </div>
+      <article className="sidebar-layout-container">
+        <aside className="sidebar-layout-sidebar">
+          {this.props.children[0]}
+        </aside>
+        <section className="sidebar-layout-main">
+          {this.props.children.slice(1)}
+        </section>
+      </article>
     );
   }
 });
