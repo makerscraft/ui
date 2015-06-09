@@ -1,7 +1,7 @@
 const React = require('react');
 const classnames = require('classnames');
 
-require('./styles/sidebarlayout.less');
+require('./sidebarlayout.less');
 
 
 class SidebarMenu extends React.Component {
