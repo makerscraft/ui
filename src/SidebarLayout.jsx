@@ -11,14 +11,14 @@ class SidebarLayout extends React.Component {
   render() {
     const {sidebar} = this.props;
     return (
-      <article className="sidebar-layout-container">
-        <aside className="sidebar-layout-sidebar">
+      <div className="sidebar-layout-container">
+        <div className="sidebar-layout-sidebar">
           {sidebar}
-        </aside>
-        <section className="sidebar-layout-main">
+        </div>
+        <div className="sidebar-layout-main">
           {this.props.children}
-        </section>
-      </article>
+        </div>
+      </div>
     );
   }
 }
