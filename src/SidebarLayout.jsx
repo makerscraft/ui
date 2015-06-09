@@ -3,7 +3,7 @@ const classnames = require('classnames');
 
 require('./styles/sidebarlayout.less');
 
-const SidebarLayout = React.createClass({
+class SidebarLayout extends React.Component {
   render() {
     return (
       <article className="sidebar-layout-container">
@@ -16,7 +16,7 @@ const SidebarLayout = React.createClass({
       </article>
     );
   }
-});
+}
 
 
 module.exports = {SidebarLayout};
