@@ -4,6 +4,11 @@ const classnames = require('classnames');
 require('./sidebarlayout.less');
 
 
+/**
+ *  Menu element for sidebar
+ *  @property heading {String} of the heading to display above the menu
+ *  @property items {Array} of components to include in the menu
+ */
 class SidebarMenu extends React.Component {
   getDefaultProps() {
     return {items: []}
@@ -21,7 +26,12 @@ class SidebarMenu extends React.Component {
   }
 }
 
-
+/**
+ *  Base layout for pages that have a sidebar element.
+ *  @property sidebarMenuSets {Array} of objects of the menu sets to include.
+ *    @property heading {String} of the heading to display above the menu
+ *    @property items {Array} of components to include in the menu
+ */
 class SidebarLayout extends React.Component {
   render() {
     const {sidebarMenuSets} = this.props;
