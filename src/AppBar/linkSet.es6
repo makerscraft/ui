@@ -28,15 +28,10 @@ else {
         menu.push(config.activity);
         main.push(config.officeHours);
         menu.push(config.takeStudent);
+        defaults(home, config.dashboard);
 
         if (/admin/.test(user.role)) {
             menu.push(config.courses);
-            defaults(home, config.dashboard);
-        }
-
-        if (/mentor/.test(user.role)) {
-            // TODO: Deprecate eagle for mentors, default => dashboard.
-            defaults(home, config.courses);
         }
     }
     else { // Student links
