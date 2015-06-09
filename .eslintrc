@@ -1,8 +1,5 @@
 {
   "parser": "babel-eslint",
-  "rules": {
-    "strict": 0
-  },
 
   "ecmaFeatures": {
     "arrowFunctions": true,
@@ -50,6 +47,9 @@
   ],
 
   "rules": {
+    ////////// Babel ////////// 
+    "strict": 0,
+
     ////////// Possible Errors //////////
 
     "comma-dangle": 1,
