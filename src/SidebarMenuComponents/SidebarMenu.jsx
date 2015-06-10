@@ -31,4 +31,4 @@ class SidebarMenu extends React.Component {
   }
 }
 
-module.exports = {SidebarMenu};
+module.exports = SidebarMenu;

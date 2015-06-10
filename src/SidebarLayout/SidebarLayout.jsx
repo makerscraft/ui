@@ -29,4 +29,4 @@ class SidebarLayout extends React.Component {
 }
 
 
-module.exports = {SidebarLayout};
+module.exports = SidebarLayout;

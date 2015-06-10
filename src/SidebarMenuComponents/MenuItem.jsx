@@ -34,4 +34,4 @@ class MenuItem extends React.Component {
 }
 
 
-module.exports = {MenuItem};
+module.exports = MenuItem;
