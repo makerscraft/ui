@@ -3,8 +3,6 @@ const classnames = require('classnames');
 
 const Icon = require('../Icon').Icon;
 
-require('./sidebarmenucomponents.less');
-
 /**
  *  Menu item element
  *  @property classes {String/Object/Array} of classes

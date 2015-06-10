@@ -1,6 +1,6 @@
-const _  = require('lodash');
-const cx = require('classnames')
+const cx = require('classnames');
 const React = require('react');
+const uniqueId = require('lodash/utility/uniqueId');
 
 // TUI Components
 const {Icon} = require('../Icon');
@@ -88,17 +88,17 @@ class AppNav extends React.Component {
                     <Masthead className="app-nav-logo"/>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
-                            (link, key) => <li>
-                                <NavLink key={key} {...link}/></li>)}
+                            (link) => <li key={uniqueId(link)}>
+                                <NavLink {...link}/></li>)}
                     </ul>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className="app-nav-list">
                         {linkSet.main.map(
-                            (link, key) => <li>
-                                <NavLink key={key} className="app-nav-link__mobile-only" {...link}/></li>)}
+                            (link) => <li key={uniqueId(link)}>
+                                <NavLink className="app-nav-link__mobile-only" {...link}/></li>)}
                         {linkSet.menu.map(
-                            (link, key) => <li>
-                                <NavLink key={key} className="app-nav-link__in-menu" {...link}/></li>)}
+                            (link) => <li key={uniqueId(link)}>
+                                <NavLink className="app-nav-link__in-menu" {...link}/></li>)}
                     </ul>
                     {user &&
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
