@@ -47,9 +47,6 @@
   ],
 
   "rules": {
-    ////////// Babel ////////// 
-    "strict": 0,
-
     ////////// Possible Errors //////////
 
     "comma-dangle": 1,
