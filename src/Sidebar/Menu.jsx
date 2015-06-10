@@ -1,7 +1,7 @@
 const React = require('react');
 const classnames = require('classnames');
 
-require('./sidebarmenucomponents.less');
+require('./menu.less');
 
 
 /**

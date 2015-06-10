@@ -1,7 +1,7 @@
 const React = require('react');
 const classnames = require('classnames');
 
-require('./sidebarlayout.less');
+require('./layout.less');
 
 /**
  *  Base layout for pages that have a sidebar element.
