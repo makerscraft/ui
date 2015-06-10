@@ -12,11 +12,11 @@ require('./sidebarmenucomponents.less');
 class SidebarMenu extends React.Component {
   static propTypes = {
     heading: React.PropTypes.string,
-    items: React.PropTypes.array
+    items: React.PropTypes.arrayOf(React.PropTypes.component)
   }
 
-  getDefaultProps() {
-    return {items: []}
+  static defaultProps = {
+    items: []
   }
 
   render() {
