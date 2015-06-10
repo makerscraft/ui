@@ -95,4 +95,4 @@ const Dropdown = React.createClass({
   }
 });
 
-module.exports = {Dropdown};
+module.exports = Dropdown;
