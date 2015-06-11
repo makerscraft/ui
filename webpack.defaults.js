@@ -42,7 +42,7 @@ module.exports = function (options) {
 
   var webpackConfig = {
     cache: true,
-    devtool: false,
+    devtool: 'source-map',
     entry: options.entry,
     module: {
       loaders: [
