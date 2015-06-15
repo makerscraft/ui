@@ -128,26 +128,25 @@ const AvailabilityGrid = React.createClass({
     this._digestBitmap(nextProps.bitmap);
   },
 
+  /**
+   * Translates bitmapstring to internal data structures and stores it on
+   * the state.
+   *
+   * Bitmap for availability is a string of 1s and 0s, with 1 representing
+   * an avalible time block and 0 representing an unavailible time block.
+   *
+   * Totally free: 11111111111111111111
+   * Always busy:  00000000000000000000
+   *
+   * If there are 4 slots in every hour (15 minutes per time block), then
+   * the availability bitmap of someone busy for the first 30m of each hour
+   * would look like this: 00110011001100110011
+   *
+   * This function splits the bitstring into the days variable we store on
+   * state.
+   *
+   */
   _digestBitmap(bitmap) {
-    /**
-     * Translates bitmapstring to internal data structures and stores it on
-     * the state.
-     *
-     * Bitmap for availability is a string of 1s and 0s, with 1 representing
-     * an avalible time block and 0 representing an unavailible time block.
-     *
-     * Totally free: 11111111111111111111
-     * Always busy:  00000000000000000000
-     *
-     * If there are 4 slots in every hour (15 minutes per time block), then
-     * the availability bitmap of someone busy for the first 30m of each hour
-     * would look like this: 00110011001100110011
-     *
-     * This function splits the bitstring into the days variable we store on
-     * state.
-     *
-     */
-
     // split the bitmap into day-size chunks
     let dayRegex = new RegExp(`.{1,${this.props.slotsHour * 24}}`, 'g')
     let dayBitmaps = bitmap.match(dayRegex)
