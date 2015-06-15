@@ -152,7 +152,7 @@ const AvailabilityGrid = React.createClass({
     }
   },
 
-  _spitBitmap() {
+  getBitmap() {
     // translate state to bitmap and return
     return this.state.days.map((dayData) => {
       return dayData.slots.map((slot) => {
@@ -162,10 +162,6 @@ const AvailabilityGrid = React.createClass({
     }).join('');
   },
 
-  getBitmap() {
-    return this._spitBitmap();
-  },
-
   handleMouseEnter() {
     if (this.state.mouseDown === 0) {
       this.handleSelectionModeChanged('neutral');
@@ -173,7 +169,7 @@ const AvailabilityGrid = React.createClass({
   },
 
   handlePost() {
-    this.props.onPost(this._spitBitmap());
+    this.props.onPost(this.getBitmap());
   },
 
   handleSelectionModeChanged(newMode, startDay, startSlot) {
