@@ -81,27 +81,17 @@ const AvailabilityGrid = React.createClass({
     let selectionMode = 'neutral';
 
     // precalculate the slot names one time
-    let currentSlot = moment(moment().format('YYYY-MM-DD'))
-    for (let i = 0; i < SLOTS_DAY; i++) {
-      slotNames.push(currentSlot.format('hh:mm A'));
-      currentSlot.add(MINUTES_SLOT, 'm');
-    }
+    slotNames = Array.fill(new Array(SLOTS_DAY)).map((slot, index) => (
+        moment(moment().format('YYYY-MM-DD')).
+        add(MINUTES_SLOT * (index + 1)).
+        format('hh:mm A')
+    ));
 
-    for (let dayIndex in days) {
-      let dayData = {
-        index: dayIndex,
-        name: days[dayIndex],
-        slots: []
-      };
-      for (let i = 0; i < SLOTS_DAY; i++) {
-        dayData.slots.push({
-          index: i,
-          name: slotNames[i],
-          selected: false
-        });
-      }
-      daysData.push(dayData);
-    }
+    daysData = days.map((name, index) => {
+      let slots = slotNames.map((name, index) => ({name, index, selected: false}));
+
+      return {index, name, slots};
+    });
 
     return {
       days: daysData,
