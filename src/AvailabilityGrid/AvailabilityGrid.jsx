@@ -7,7 +7,11 @@ const AvailabilityGridSlot = React.createClass({
   propTypes: {
     dayIndex: React.PropTypes.number,
     mouseDown: React.PropTypes.number,
-    selectionMode: React.PropTypes.string
+    selectionMode: React.PropTypes.string,
+    data: React.PropTypes.object,
+    onSelectionModeChanged: React.PropTypes.func,
+    onSlotUnselected: React.PropTypes.func,
+    onSlotSelected: React.PropTypes.func
   },
 
   handleMouseDown() {
@@ -55,7 +59,8 @@ const AvailabilityGridSlot = React.createClass({
 const AvailabilityGridDay = React.createClass({
   propTypes: {
     minSlot: React.PropTypes.number,
-    maxSlot: React.PropTypes.number
+    maxSlot: React.PropTypes.number,
+    data: React.PropTypes.object
   },
 
   render() {
@@ -80,7 +85,8 @@ const AvailabilityGridDay = React.createClass({
 
 const AvailabilityGrid = React.createClass({
   propTypes: {
-    slotsHour: React.PropTypes.number
+    slotsHour: React.PropTypes.number,
+    onPost: React.PropTypes.func
   },
 
   getInitialState() {
