@@ -167,10 +167,9 @@ const AvailabilityGrid = React.createClass({
 
   _spitBitmap() {
     // translate state to bitmap and return
-    let value;
     return this.state.days.map((dayData) => {
       return dayData.slots.map((slot) => {
-        value = slot.selected ? '1' : '0'
+        let value = slot.selected ? '1' : '0'
         return new Array(4 / this.props.slotsHour + 1).join(value);
       }).join('');
     }).join('');
@@ -186,8 +185,8 @@ const AvailabilityGrid = React.createClass({
     }
   },
 
-  handleAvailabilityPost() {
-    this.props.onAvailabilityPost(this._spitBitmap());
+  handlePost() {
+    this.props.onPost(this._spitBitmap());
   },
 
   handleSelectionModeChanged(newMode, startDay, startSlot) {
@@ -284,7 +283,7 @@ const AvailabilityGrid = React.createClass({
         <input
             className="availability-grid-update-button"
             type="submit"
-            onClick={this.handleAvailabilityPost}
+            onClick={this.handlePost}
             value="Update Availability"/>
       </div>
     );
