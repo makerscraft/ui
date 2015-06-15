@@ -4,6 +4,12 @@ const moment = require('moment');
 const log = require('debug')('ui:AvailabilityGrid');
 
 const AvailabilityGridSlot = React.createClass({
+  propTypes: {
+    dayIndex: React.PropTypes.number,
+    mouseDown: React.PropTypes.number,
+    selectionMode: React.PropTypes.string
+  },
+
   handleMouseDown() {
     if (this.props.data.selected) {
       this.props.onSelectionModeChanged('unselecting', this.props.dayIndex, this.props.data.index);
@@ -47,6 +53,11 @@ const AvailabilityGridSlot = React.createClass({
 })
 
 const AvailabilityGridDay = React.createClass({
+  propTypes: {
+    minSlot: React.PropTypes.number,
+    maxSlot: React.PropTypes.number
+  },
+
   render() {
     let slotNodes = this.props.data.slots.map((slotData) => {
       const {data, ...other} = this.props;
@@ -68,6 +79,10 @@ const AvailabilityGridDay = React.createClass({
 })
 
 const AvailabilityGrid = React.createClass({
+  propTypes: {
+    slotsHour: React.PropTypes.number
+  },
+
   getInitialState() {
     const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
