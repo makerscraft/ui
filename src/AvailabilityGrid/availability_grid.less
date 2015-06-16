@@ -1,0 +1,44 @@
+@import "~tfstyleguide/vars";
+
+.availability-grid {
+  width: 620px;
+  margin: 0 auto;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+
+  .availability-grid-slot-names {
+    display: inline-block;
+    width: 70px;
+    font-size: 12px;
+    vertical-align: bottom;
+  }
+
+  .availability-grid-days {
+    display: inline-block;
+    text-align: center;
+    .availability-grid-day {
+      display: inline-block;
+      width: 70px;
+
+      .availability-grid-slot {
+        width: 70px;
+        height: 20px;
+        margin: 0;
+        background-color: @lightgray;
+        border: @gray 1px solid;
+        border-bottom: none;
+
+        &.selected {
+          background-color: @blue50;
+        }
+      }
+    }
+  }
+
+  .availability-grid-update-button {
+    display: block;
+    margin: 30px auto;
+    margin-left: auto;
+  }
+}
