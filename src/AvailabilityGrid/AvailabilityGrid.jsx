@@ -1,4 +1,5 @@
 const React = require('react/addons');
+const classNames = require('classnames');
 const moment = require('moment');
 
 const log = require('debug')('ui:AvailabilityGrid');
@@ -15,12 +16,14 @@ const AvailabilityGridSlot = React.createClass({
   },
 
   handleMouseDown() {
+    const {data, dayIndex, onSelectionModeChanged, onSlotUnselected, onSlotSelected} = this.props;
+
     if (this.props.data.selected) {
-      this.props.onSelectionModeChanged('unselecting', this.props.dayIndex, this.props.data.index);
-      this.props.onSlotUnselected(this.props.dayIndex, this.props.data.index);
+      onSelectionModeChanged('unselecting', dayIndex, data.index);
+      onSlotUnselected(dayIndex, data.index);
     } else {
-      this.props.onSelectionModeChanged('selecting', this.props.dayIndex, this.props.data.index);
-      this.props.onSlotSelected(this.props.dayIndex, this.props.data.index);
+      onSelectionModeChanged('selecting', dayIndex, data.index);
+      onSlotSelected(dayIndex, data.index);
     }
   },
 
@@ -29,18 +32,19 @@ const AvailabilityGridSlot = React.createClass({
   },
 
   handleMouseEnter() {
-    if (this.props.mouseDown === 1) {
-      if (this.props.selectionMode === 'selecting') {
-        this.props.onSlotSelected(this.props.dayIndex, this.props.data.index);
-      } else if (this.props.selectionMode === 'unselecting') {
-        this.props.onSlotUnselected(this.props.dayIndex, this.props.data.index);
+    const {data, mouseDown, selectionMode, onSlotSelected, onSlotUnselected} = this.props;
+
+    if (mouseDown === 1) {
+      if (selectionMode === 'selecting') {
+        onSlotSelected(dayIndex, data.index);
+      } else if (selectionMode === 'unselecting') {
+        onSlotUnselected(dayIndex, data.index);
       }
     }
   },
 
   render() {
-    let cx = React.addons.classSet;
-    let classes = cx({
+    let classes = classNames({
       'availability-grid-slot': true,
       'selected': this.props.data.selected
     });
