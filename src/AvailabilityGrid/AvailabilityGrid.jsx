@@ -86,6 +86,8 @@ const AvailabilityGridDay = React.createClass({
 const AvailabilityGrid = React.createClass({
   propTypes: {
     slotsHour: React.PropTypes.number,
+    minHour: React.PropTypes.number,
+    maxHour: React.PropTypes.number,
     onPost: React.PropTypes.func
   },
 
@@ -253,8 +255,8 @@ const AvailabilityGrid = React.createClass({
       );
     })
 
-    let minSlot = 28;
-    let maxSlot = 91;
+    let minSlot = this.props.minHour * this.props.slotsHour;
+    let maxSlot = this.props.maxHour * this.props.slotsHour;
 
     let dayNodes = this.state.days.map((dayData) => {
       return (
