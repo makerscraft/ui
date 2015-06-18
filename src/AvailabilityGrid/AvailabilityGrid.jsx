@@ -1,3 +1,5 @@
+require('./availability_grid.less');
+
 const React = require('react/addons');
 const classNames = require('classnames');
 const moment = require('moment');
@@ -32,7 +34,7 @@ const AvailabilityGridSlot = React.createClass({
   },
 
   handleMouseEnter() {
-    const {data, mouseDown, selectionMode, onSlotSelected, onSlotUnselected} = this.props;
+    const {data, mouseDown, dayIndex, selectionMode, onSlotSelected, onSlotUnselected} = this.props;
 
     if (mouseDown === 1) {
       if (selectionMode === 'selecting') {
@@ -107,11 +109,17 @@ const AvailabilityGrid = React.createClass({
     let slotNames = [];
     let selectionMode = 'neutral';
 
+
     // precalculate the slot names one time
+    let formatString = 'ha';
+    if (this.props.slotsHour > 1) {
+      formatString = 'h:mma';
+    }
+
     slotNames = Array.fill(new Array(SLOTS_DAY)).map((slot, index) => (
         moment(moment().format('YYYY-MM-DD')).
-        add(MINUTES_SLOT * (index + 1)).
-        format('hh:mm A')
+        add(MINUTES_SLOT * (index + 1), 'minutes').
+        format(formatString)
     ));
 
     daysData = days.map((name, index) => {
@@ -283,15 +291,15 @@ const AvailabilityGrid = React.createClass({
           onMouseDown={this.onMouseDown}
           onMouseUp={this.onMouseUp} >
         <div
-            className="availability-grid-slot-names">
-          {slotNames.slice(minSlot, maxSlot)}
-        </div>
-        <div
             className="availability-grid-days">
           {dayNodes}
         </div>
+        <div
+            className="availability-grid-slot-names">
+          {slotNames.slice(minSlot, maxSlot)}
+        </div>
         <input
-            className="availability-grid-update-button"
+            className="button"
             type="submit"
             onClick={this.handlePost}
             value="Update Availability"/>
