@@ -298,11 +298,13 @@ const AvailabilityGrid = React.createClass({
             className="availability-grid-slot-names">
           {slotNames.slice(minSlot, maxSlot)}
         </div>
-        <input
-            className="button"
-            type="submit"
-            onClick={this.handlePost}
-            value="Update Availability"/>
+        {this.props.onPost && (
+          <input
+              className="button"
+              type="submit"
+              onClick={this.handlePost}
+              value="Update Availability"/>
+          )}
       </div>
     );
   }
