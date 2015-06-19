@@ -9,36 +9,41 @@
 
   .availability-grid-slot-names {
     display: inline-block;
-    width: 70px;
+    width: 75px;
     font-size: 12px;
     vertical-align: bottom;
+
+
+    .availability-grid-slot-name {
+      line-height: 29px;
+      padding-left: 15px;
+    }
   }
 
   .availability-grid-days {
     display: inline-block;
     text-align: center;
+    font-size: 14px;
+    color: @gray75;
+
     .availability-grid-day {
       display: inline-block;
-      width: 70px;
+      width: 59px;
+      line-height: 30px;
 
       .availability-grid-slot {
-        width: 70px;
-        height: 20px;
+        width: 59px;
+        height: 29px;
         margin: 0;
-        background-color: @lightgray;
-        border: @gray 1px solid;
-        border-bottom: none;
+        background-color: @gray15;
+        border: @gray5 1px solid;
+        border-width: 1px 0px 0px 1px;
+        cursor: pointer;
 
         &.selected {
           background-color: @blue50;
         }
       }
     }
-  }
-
-  .availability-grid-update-button {
-    display: block;
-    margin: 30px auto;
-    margin-left: auto;
   }
 }

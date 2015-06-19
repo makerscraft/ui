@@ -1,57 +1,61 @@
 @import '~tfstyleguide/vars';
 
-.button.button__white.dd-button {
+.dropdown-container {
   width: 420px;
   max-width: 100%;
+}
+
+.button.button__white.dd-button {
+  width: 100%;
   position: relative;
   text-align: left;
   color: @gray75;
+  background-color: @gray5;
+  margin-bottom: 0;
 
   &:focus, &:hover, &:active, &:visited {
     outline: none;
-    background-color: @white;
+    background-color: @gray15;
     color: @gray75;
   }
 
-  &::after {
+  .icon-navigatedown {
     position: absolute;
-    content: '';
-    right: 15px;
-    top: 18px;
-    border-top: 9px solid @gray75;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
+    right: 1em;
+    top: 15px;
+    pointer-events: none;
   }
-  
+}
+
+.dd-open {
+  max-height: 300px;
+  overflow: scroll;
+  border-top: 1px solid @gray15;
+  background-color: @gray5;
+  position: absolute;
+  width: 420px;
+  cursor: pointer;
+  z-index: 10;
+
   p {
-    text-align: left;
     color: @gray75;
+    font-size: 16px;
+    padding-top: 7px;
+    padding-bottom: 8px;
+    padding-left: 1em;
+    padding-right: 1em;
     margin-bottom: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-    
-  .dd-open {
-    margin-top: 15px;
-    margin-left: -1em;
-    margin-right: -1em;
-    max-height: 300px;
-    overflow: scroll;
-    border-top: 1px solid @gray15;
-    p {
-      font-size: 16px;
-      padding-top: 7px;
-      padding-bottom: 8px;
-      padding-left: 1em;
-      padding-right: 1em;
-      &:hover {
-        background-color: @gray5;
-      }
+
+    &:hover {
+      background-color: @blue25;
+      color: @blue;
     }
   }
+}
 
-  &.button.button__white:hover {
-    background-color: @white;
-  }
+.hidden {
+  display: none;
 }
