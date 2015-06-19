@@ -72,8 +72,12 @@ class DatePicker extends React.Component {
 
   _handleClick(event) {
     const {days} = this.state;
+    const {handleChange} = this.props;
     const newDate = parseInt(event.target.getAttribute('id'));
-    this.setState({activeIndex: _.findIndex(days, {dayOfYear: newDate})});
+    const newActiveIndex = _.findIndex(days, {dayOfYear: newDate});
+    this.setState({activeIndex: newActiveIndex});
+
+    handleChange(days[newActiveIndex].dateObj);
   }
 
   _navigateForward() {
