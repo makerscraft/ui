@@ -1,7 +1,12 @@
 @import '~tfstyleguide/vars';
 
-.button.button__white.dd-button {
+.dropdown-container {
+  width: 420px;
   max-width: 100%;
+}
+
+.button.button__white.dd-button {
+  width: 100%;
   position: relative;
   text-align: left;
   color: @gray75;
@@ -27,7 +32,7 @@
   overflow: scroll;
   border-top: 1px solid @gray15;
   background-color: @gray5;
-  max-width: (@column-px * 4 + @gutter-px * 3);
+  width: 100%;
   cursor: pointer;
 
   p {
@@ -43,7 +48,8 @@
     text-overflow: ellipsis;
 
     &:hover {
-      background-color: @white;
+      background-color: @blue25;
+      color: @blue;
     }
   }
 }
