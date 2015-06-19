@@ -80,12 +80,14 @@ const Dropdown = React.createClass({
       {'hidden': !this.state.open});
 
     return (
-      <div
-          className={buttonClasses}
-          onClick={this._toggleOpen}
-          data-clickable>
-        {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
-        <span className="icon-navigatedown" aria-hidden="true"></span>
+      <div className="dropdown-container">
+        <div
+            className={buttonClasses}
+            onClick={this._toggleOpen}
+            data-clickable>
+          {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
+          <span className="icon-navigatedown" aria-hidden="true"></span>
+        </div>
         <div
           className={dropdownClasses}
           onClick={this._handleChange}>
