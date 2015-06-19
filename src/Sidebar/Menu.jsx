@@ -24,7 +24,7 @@ class SidebarMenu extends React.Component {
 
     return (
       <div className="sidebar-menu">
-        <div className="heading-small">{heading}</div>
+        <div className="subheading">{heading}</div>
         {items}
       </div>
     );
