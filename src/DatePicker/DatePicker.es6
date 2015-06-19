@@ -35,8 +35,6 @@ class DatePicker extends React.Component {
     super();
     this.state = {
       visible: false,
-      startDay: '',
-      endDay: '',
       days: [],
       activeIndex: null,
       monthsNavigated: 0
@@ -67,8 +65,6 @@ class DatePicker extends React.Component {
       _.findIndex(days, {dayOfYear: moment().dayOfYear()});
 
     this.setState({
-      startDay: startDay,
-      endDay: endDay,
       days: days,
       activeIndex: activeIndex
     });
@@ -81,12 +77,12 @@ class DatePicker extends React.Component {
   }
 
   _navigateForward() {
-    this.setState({monthsNavigated: this.state.monthsNavigated + 1});
+    this.state.monthsNavigated = this.state.monthsNavigated + 1;
     this._generateDays();
   }
 
   _navigateBack() {
-    this.setState({monthsNavigated: this.state.monthsNavigated - 1});
+    this.state.monthsNavigated = this.state.monthsNavigated - 1;
     this._generateDays();
   }
 
@@ -101,13 +97,19 @@ class DatePicker extends React.Component {
 
     return (
       <div className="date-picker-container">
-        <div className="button date-picker-button" onClick={this._toggleOpen.bind(this)}>
+        <div
+            className="button date-picker-button"
+            onClick={this._toggleOpen.bind(this)}>
           {moment(activeDay).format('MM/DD/YYYY')}
           <span className="icon-navigatedown" aria-hidden="true"></span>
         </div>
         <div className={datePickerClasses}>
-          <div className="arrow-left" onClick={this._navigateBack.bind(this)}></div>
-          <div className="arrow-right" onClick={this._navigateForward.bind(this)}></div>
+        <span
+            className="icon-navigateleft" aria-hidden="true"
+            onClick={this._navigateBack.bind(this)}></span>
+        <span
+            className="icon-navigateright" aria-hidden="true"
+            onClick={this._navigateForward.bind(this)}></span>
           <div className="selected-day">
             {moment(activeDay).format('dddd, MMMM Do')}
           </div>
