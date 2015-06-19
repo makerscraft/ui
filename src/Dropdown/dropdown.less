@@ -1,27 +1,23 @@
 @import '~tfstyleguide/vars';
 
 .button.button__white.dd-button {
-  width: 420px;
   max-width: 100%;
   position: relative;
   text-align: left;
   color: @gray75;
-  background-color: @gray5;
+  background-color: @gray15;
 
   &:focus, &:hover, &:active, &:visited {
     outline: none;
-    background-color: @gray5;
+    background-color: @gray15;
     color: @gray75;
   }
 
-  &::after {
+  .icon-navigatedown {
     position: absolute;
-    content: '';
-    right: 15px;
-    top: 18px;
-    border-top: 9px solid @gray75;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
+    right: 1em;
+    top: 15px;
+    pointer-events: none;
   }
 
   p {
@@ -40,6 +36,7 @@
     max-height: 300px;
     overflow: scroll;
     border-top: 1px solid @gray15;
+
     p {
       font-size: 16px;
       padding-top: 7px;
@@ -51,12 +48,4 @@
       }
     }
   }
-
-  &.button.button__white:hover {
-    background-color: @gray5;
-  }
-}
-
-.hidden {
-  display: none;
 }

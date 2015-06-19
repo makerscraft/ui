@@ -85,6 +85,7 @@ const Dropdown = React.createClass({
           onClick={this._toggleOpen}
           data-clickable>
         {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
+        <span className="icon-navigatedown" aria-hidden="true"></span>
         <div
           className={dropdownClasses}
           onClick={this._handleChange}>
