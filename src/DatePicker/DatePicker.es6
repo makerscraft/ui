@@ -67,7 +67,6 @@ class DatePicker extends React.Component {
 
   _generateDays() {
     let {monthsNavigated, activeIndex} = this.state;
-    const {defaultDate} = this.props;
 
     const startDay = moment().add(monthsNavigated, 'month').
                             startOf('month').startOf('week').startOf('day');
