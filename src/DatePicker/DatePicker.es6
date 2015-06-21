@@ -16,13 +16,25 @@ class Day extends React.Component {
   render () {
     const {date, unclickable, active, onClick} = this.props;
     const classes = cx(
-      "day", {unclickable: unclickable}, {active: active});
+      "day",
+      {unclickable: unclickable},
+      {active: active},
+      {today: moment().dayOfYear() === moment(date).dayOfYear()});
+
+    const tinyTextClass = cx(
+      'day-tiny-text',
+      {hidden: moment(date).date() !== 1 &&
+        moment(date).dayOfYear() !== moment().dayOfYear()});
+
+    const tinyText = moment(date).date() === 1 ?
+      moment(date).format('MMM') : 'Today';
 
     return (
       <div
           id={moment(date).dayOfYear()}
           className={classes}
           onClick={onClick.bind()}>
+        <div className={tinyTextClass}>{tinyText}</div>
         {moment(date).date()}
       </div>
     );
@@ -45,8 +57,17 @@ class DatePicker extends React.Component {
     this._generateDays();
   }
 
+  componentWillReceiveProps(newProps) {
+    const {days} = this.state;
+    let activeIndex = _.findIndex(days,
+      {dayOfYear: moment(newProps.defaultDate).dayOfYear()})
+
+    this.setState({activeIndex: activeIndex})
+  }
+
   _generateDays() {
     let {monthsNavigated, activeIndex} = this.state;
+    const {defaultDate} = this.props;
 
     const startDay = moment().add(monthsNavigated, 'month').
                             startOf('month').startOf('week').startOf('day');
@@ -73,9 +94,12 @@ class DatePicker extends React.Component {
   _handleClick(event) {
     const {days} = this.state;
     const {handleChange} = this.props;
-    const newDate = parseInt(event.target.getAttribute('id'));
+    const newDate = parseInt(event.target.getAttribute('id') ||
+      event.target.parentElement.getAttribute('id'));
     const newActiveIndex = _.findIndex(days, {dayOfYear: newDate});
+
     this.setState({activeIndex: newActiveIndex});
+    this._toggleOpen();
 
     handleChange(days[newActiveIndex].dateObj);
   }

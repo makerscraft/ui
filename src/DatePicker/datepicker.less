@@ -95,22 +95,56 @@
 }
 
 .day {
-	font-size: 16px;
+	font-size: 15px;
 	flex-grow: 1;
 	text-align: center;
 	width: ~"calc(100% / 7)";
 	height: 40px;
 	border-bottom: 1px solid @gray15;
-	padding-top: 6px;
+	padding-top: 9px;
 	cursor: pointer;
+	position: relative;
+	transition: background-color .2s ease;
 
 	&.unclickable {
 		background-color: @gray5;
 		pointer-events: none;
 	}
 
-	&.active {
+	&.today {
+		color: @blue;
+
+		&::before {
+			content: 'Today';
+			font-size: 10px;
+			color: @blue;
+			position: absolute;
+			top: 0px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&.active::before {
+			color: @white;
+		}
+	}
+
+	&:hover {
 		background-color: @blue25;
+		transition: background-color .1s ease;
+	}
+
+	&.active {
+		background-color: @blue75;
+		color: @white;
+	}
+
+	.day-tiny-text {
+		font-size: 10px;
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
 
