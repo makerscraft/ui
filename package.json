@@ -32,6 +32,8 @@
   "dependencies": {
     "classnames": "^2.1.1",
     "lodash": "^3.9.3",
+    "moment": "^2.10.3",
+    "moment-timezone": "^0.4.0",
     "react": "^0.13.3",
     "spark-md5": "0.0.5",
     "tfstyleguide": "^2.1.0"
