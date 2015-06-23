@@ -116,11 +116,11 @@ const AvailabilityGrid = React.createClass({
       formatString = 'h:mma';
     }
 
-    slotNames = Array.fill(new Array(SLOTS_DAY)).map((slot, index) => (
-        moment(moment().format('YYYY-MM-DD')).
-        add(MINUTES_SLOT * (index + 1), 'minutes').
-        format(formatString)
-    ));
+    let currentSlot = moment().startOf('day');
+    for (let i = 0; i < SLOTS_DAY; i++) {
+      slotNames.push(currentSlot.format(formatString));
+      currentSlot.add(MINUTES_SLOT, 'm');
+    }
 
     daysData = days.map((name, index) => {
       let slots = slotNames.map((name, index) => ({name, index, selected: false}));
@@ -209,6 +209,14 @@ const AvailabilityGrid = React.createClass({
         return new Array(4 / this.props.slotsHour + 1).join(value);
       }).join('');
     }).join('');
+  },
+
+  getSlotsAvailable() {
+    return _.sum(this.state.days.map(dayData => {
+      return _.sum(dayData.slots.map(slot => {
+        return slot.selected ? 1 : 0
+      }));
+    }));
   },
 
   handleMouseEnter() {
