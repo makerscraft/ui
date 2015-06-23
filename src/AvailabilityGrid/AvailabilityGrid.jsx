@@ -151,6 +151,13 @@ const AvailabilityGrid = React.createClass({
     this._digestBitmap(nextProps.bitmap);
   },
 
+  componentDidMount() {
+     // If the bitmap is present when the component is mounted, render it.
+     if (this.props.bitmap && this.props.bitmap != '') {
+       this._digestBitmap(this.props.bitmap);
+     }
+   },
+
   /**
    * Translates bitmapstring to internal data structures and stores it on
    * the state.
