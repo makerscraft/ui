@@ -1,6 +1,6 @@
 {
   "name": "thinkful-ui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shared navigation and UI resources for Thinkful.",
   "main": "src/index.es6",
   "scripts": {
@@ -40,7 +40,7 @@
     "moment-timezone": "^0.4.0",
     "react": "^0.13.3",
     "spark-md5": "0.0.5",
-    "tfstyleguide": "^2.1.0"
+    "tfstyleguide": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
