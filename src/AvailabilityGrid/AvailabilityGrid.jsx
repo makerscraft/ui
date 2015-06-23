@@ -177,16 +177,23 @@ const AvailabilityGrid = React.createClass({
    *
    */
   _digestBitmap(bitmap) {
-    // split the bitmap into day-size chunks
-    let dayRegex = new RegExp(`.{1,${this.props.slotsHour * 24}}`, 'g')
-    let dayBitmaps = bitmap.match(dayRegex)
+    const MAX_SLOTS_HOUR = 4;
+    const HOURS_DAY = 24;
+    const BITS_SLOT = MAX_SLOTS_HOUR / this.props.slotsHour;
 
+    // split the bitmap into day-size chunks
+    let dayRegex = new RegExp(`.{1,${MAX_SLOTS_HOUR * HOURS_DAY}}`, 'g');
+    let slotRegex = new RegExp(`.{1,${BITS_SLOT}}`, 'g');
+    let availableString = '1'.repeat(BITS_SLOT);
     let daysData = this.state.days;
+
+    let dayBitmaps = bitmap.match(dayRegex);
 
     if (dayBitmaps) {
       dayBitmaps.map((dayBitmap, dayIndex) => {
-        dayBitmap.split('').map((slotValue, slotIndex) => {
-          daysData[dayIndex].slots[slotIndex].selected = slotValue === '1';
+        let slotBitmaps = dayBitmap.match(slotRegex);
+        slotBitmaps.map((slotValue, slotIndex) => {
+          daysData[dayIndex].slots[slotIndex].selected = slotValue === availableString;
         })
       })
 
