@@ -277,7 +277,6 @@ const AvailabilityGrid = React.createClass({
       });
 
       this.setState({days: days});
-      console.log(this.getSlotsAvailable());
     }
   },
 
