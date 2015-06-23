@@ -212,8 +212,8 @@ const AvailabilityGrid = React.createClass({
   },
 
   getSlotsAvailable() {
-    return _.sum(this.state.days.map((dayData) => {
-      return _.sum(dayData.slots.map((slot) => {
+    return _.sum(this.state.days.map(dayData => {
+      return _.sum(dayData.slots.map(slot => {
         return slot.selected ? 1 : 0
       }));
     }));
