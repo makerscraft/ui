@@ -116,7 +116,7 @@ const AvailabilityGrid = React.createClass({
       formatString = 'h:mma';
     }
 
-    let currentSlot = moment(moment().format('YYYY-MM-DD'))
+    let currentSlot = moment().startOf('day');
     for (let i = 0; i < SLOTS_DAY; i++) {
       slotNames.push(currentSlot.format(formatString));
       currentSlot.add(MINUTES_SLOT, 'm');
