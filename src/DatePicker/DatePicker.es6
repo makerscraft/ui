@@ -16,13 +16,24 @@ class Day extends React.Component {
   render () {
     const {date, unclickable, active, onClick} = this.props;
     const classes = cx(
-      "day", {unclickable: unclickable}, {active: active});
+      "day",
+      {unclickable: unclickable},
+      {active: active},
+      {today: moment().dayOfYear() === moment(date).dayOfYear()});
+
+    const tinyTextClass = cx(
+      'day-tiny-text',
+      {hidden: moment(date).date() !== 1 &&
+        moment(date).dayOfYear() !== moment().dayOfYear()});
+
+    const tinyText = moment(date).date() === 1 ?
+      moment(date).format('MMM') : 'Today';
 
     return (
       <div
-          id={moment(date).dayOfYear()}
           className={classes}
           onClick={onClick.bind()}>
+        <div className={tinyTextClass}>{tinyText}</div>
         {moment(date).date()}
       </div>
     );
@@ -43,6 +54,14 @@ class DatePicker extends React.Component {
 
   componentDidMount() {
     this._generateDays();
+  }
+
+  componentWillReceiveProps(newProps) {
+    const {days} = this.state;
+    let activeIndex = _.findIndex(days,
+      {dayOfYear: moment(newProps.defaultDate).dayOfYear()})
+
+    this.setState({activeIndex})
   }
 
   _generateDays() {
@@ -70,12 +89,13 @@ class DatePicker extends React.Component {
     });
   }
 
-  _handleClick(event) {
+  _handleClick(event, newDay) {
     const {days} = this.state;
     const {handleChange} = this.props;
-    const newDate = parseInt(event.target.getAttribute('id'));
-    const newActiveIndex = _.findIndex(days, {dayOfYear: newDate});
+    const newActiveIndex = _.findIndex(days, {dayOfYear: newDay});
+
     this.setState({activeIndex: newActiveIndex});
+    this._toggleOpen();
 
     handleChange(days[newActiveIndex].dateObj);
   }
@@ -128,7 +148,7 @@ class DatePicker extends React.Component {
               active={key===activeIndex}
               unclickable={day.dateObj.month() !==
                 moment().add(monthsNavigated, 'month').month()}
-              onClick={this._handleClick.bind(this)}/>)}
+              onClick={event => this._handleClick(event, day.dayOfYear)}/>)}
           </div>
         </div>
       </div>
