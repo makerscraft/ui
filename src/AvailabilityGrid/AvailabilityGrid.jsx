@@ -211,6 +211,14 @@ const AvailabilityGrid = React.createClass({
     }).join('');
   },
 
+  getSlotsAvailable() {
+    return _.sum(this.state.days.map((dayData) => {
+      return _.sum(dayData.slots.map((slot) => {
+        return slot.selected ? 1 : 0
+      }));
+    }));
+  },
+
   handleMouseEnter() {
     if (this.state.mouseDown === 0) {
       this.handleSelectionModeChanged('neutral');
@@ -269,6 +277,7 @@ const AvailabilityGrid = React.createClass({
       });
 
       this.setState({days: days});
+      console.log(this.getSlotsAvailable());
     }
   },
 
