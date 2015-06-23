@@ -10,9 +10,14 @@ class Icon extends React.Component {
     }
 
     render() {
-        return <span
-            aria-hidden="true"
-            className={`icon-${this.props.name} ${this.props.className || ''}`}/>
+        const {name='pizza', className='', ...props} = this.props;
+        return (
+            <span
+                aria-hidden='true'
+                className={`icon-${name} ${className}`}
+                {...props}
+            />
+        )
     }
 }
 
