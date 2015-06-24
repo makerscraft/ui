@@ -311,7 +311,7 @@ const AvailabilityGrid = React.createClass({
 
     let classes = classNames({
       'availability-grid': true,
-      'disabled': this.props.disabled
+      'availability-grid__disabled': this.props.disabled
     });
 
     return (
