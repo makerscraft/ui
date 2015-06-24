@@ -94,7 +94,8 @@ const AvailabilityGrid = React.createClass({
     slotsHour: React.PropTypes.number,
     minHour: React.PropTypes.number,
     maxHour: React.PropTypes.number,
-    onPost: React.PropTypes.func
+    onPost: React.PropTypes.func,
+    disabled: React.PropTypes.bool
   },
 
   getInitialState() {
@@ -230,21 +231,23 @@ const AvailabilityGrid = React.createClass({
   },
 
   handleSelectionModeChanged(newMode, startDay, startSlot) {
-    if (newMode == 'selecting' || newMode == 'unselecting') {
-      let days = this.state.days;
-      days[startDay].slots[startSlot].selected = (newMode === 'selecting')
+    if (!this.props.disabled) {
+      if (newMode == 'selecting' || newMode == 'unselecting') {
+        let days = this.state.days;
+        days[startDay].slots[startSlot].selected = (newMode === 'selecting')
 
-      this.setState({
-        days: days,
-        selectionStartDays: _.cloneDeep(days),
-        selectionMode: newMode,
-        selectionStartDay: startDay,
-        selectionStartSlot: startSlot
-      });
-    } else {
-      this.setState({
-        selectionMode: newMode
-      });
+        this.setState({
+          days: days,
+          selectionStartDays: _.cloneDeep(days),
+          selectionMode: newMode,
+          selectionStartDay: startDay,
+          selectionStartSlot: startSlot
+        });
+      } else {
+        this.setState({
+          selectionMode: newMode
+        });
+      }
     }
   },
 
@@ -306,9 +309,14 @@ const AvailabilityGrid = React.createClass({
       );
     });
 
+    let classes = classNames({
+      'availability-grid': true,
+      'availability-grid__disabled': this.props.disabled
+    });
+
     return (
       <div
-          className="availability-grid"
+          className={classes}
           onMouseEnter={this.handleMouseEnter}
           onMouseDown={this.onMouseDown}
           onMouseUp={this.onMouseUp} >
