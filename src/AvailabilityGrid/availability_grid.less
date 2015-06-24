@@ -1,5 +1,26 @@
 @import "~tfstyleguide/vars";
 
+.availability-grid.disabled {
+  color: @gray50;
+
+  .availability-grid-days {
+    color: @gray50;
+
+    .availability-grid-day {
+
+      .availability-grid-slot {
+        background-color: @gray5;
+        border-color: @white;
+        cursor: default;
+
+        &.selected {
+          background-color: @gray25;
+        }
+      }
+    }
+  }
+}
+
 .availability-grid {
   width: 620px;
   margin: 0 auto;
