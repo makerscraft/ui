@@ -46,10 +46,10 @@ const AvailabilityGridSlot = React.createClass({
   },
 
   render() {
-    let classes = classNames({
-      'availability-grid-slot': true,
-      'selected': this.props.data.selected
-    });
+    let classes = classNames(
+      'availability-grid-slot',
+      {'selected': this.props.data.selected}
+    );
 
     return (
       <div
@@ -309,10 +309,10 @@ const AvailabilityGrid = React.createClass({
       );
     });
 
-    let classes = classNames({
-      'availability-grid': true,
-      'availability-grid__disabled': this.props.disabled
-    });
+    let classes = classNames(
+      'availability-grid',
+      {'availability-grid__disabled': this.props.disabled}
+    );
 
     return (
       <div
