@@ -39,6 +39,14 @@ else {
         if (/core/.test(user.student_type)) {
             defaults(home, config.courses);
         }
+        else if (/tfl/.test(user.student_type)) {
+            assign(home,{
+                displayName: 'Library',
+                icon: 'book',
+                host: config.dashboard.host,
+                url: `${config.dashboard.url}/library`
+            });
+        }
         else {
             defaults(home, config.dashboard);
         }
