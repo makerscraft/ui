@@ -14,7 +14,7 @@ class Icon extends React.Component {
         return (
             <span
                 aria-hidden='true'
-                className={`icon-${name} ${className}`}
+                className={`tui-icon icon-${name} ${className}`}
                 {...props}
             />
         )
