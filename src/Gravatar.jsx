@@ -22,10 +22,12 @@ class Gravatar extends React.Component {
     }
 
     render() {
+        const {...props} = this.props;
         return <img
             className={`gravatar ${this.props.className || ''}`}
             src={`${URL}/${MD5.hash(this.props.email)}?d=${this.props.default}&s=${this.props.size}`}
-            style={this.props.style || {}}/>
+            style={this.props.style || {}}
+            {...props}/>
     }
 }
 
