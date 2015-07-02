@@ -37,7 +37,7 @@ else {
     else { // Student links
         main.push(config.officeHours);
         if (/core/.test(user.student_type)) {
-            defaults(home, config.courses);
+            defaults(home, config.dashboard);
         }
         else if (/tfl/.test(user.student_type)) {
             assign(home,{
