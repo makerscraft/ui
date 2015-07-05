@@ -17,13 +17,18 @@ config = mapValues(global.__env.config,
     (link, key) => assign({}, link, config[key]));
 
 let home = {displayName: 'Home', icon: 'home'};
-let main = [home]
+let main = [];
 let menu = [];
 
 if(! user) {
-    defaults(home, config.www);
+    menu.push(config.library);
+    menu.push(config.officeHours);
+    menu.push(config.forBeginners);
+    menu.push(config.pricing);
+    menu.push(config.signIn)
 }
 else {
+    main.push(home);
     if (/admin|mentor/.test(user.role)) {
         menu.push(config.activity);
         main.push(config.officeHours);

@@ -1,5 +1,7 @@
 @import "~tfstyleguide/vars";
 
+@nav-height: 46px;
+
 .app-nav-container {
     position: relative;
     z-index: 1;
@@ -8,9 +10,10 @@
     margin-bottom: 30px;
 }
 
+
 .app-nav {
     position: relative;
-    height: 46px;
+    height: @nav-height;
     top: 0px;
     max-width: @grid-width;
     margin: 0 auto;
@@ -38,7 +41,7 @@
     white-space: nowrap;
     opacity: 0;
     border-top: 1px solid @blue75;
-    transform: translate(-100%, 46px);
+    transform: translate(-100%, @nav-height);
     transition: transform 0.35s ease,
                 opacity 0.28s ease,
                 max-width 0.35s ease,
@@ -65,7 +68,7 @@
       border-top-color: transparent;
       box-shadow: 0 1px 2px @gray25;
 
-      transform: translate(0, 46px);
+      transform: translate(0, @nav-height);
     }
 
     @media @bigger {
@@ -74,7 +77,7 @@
 }
 
 .app-nav__visible .app-nav-list {
-  transform: translate(0px, 46px);
+  transform: translate(0px, @nav-height);
   max-width: 640px;
   opacity: 1;
 
@@ -127,7 +130,7 @@
     text-decoration: none;
     font-size: 16px;
     line-height: 28px;
-    height: 46px; // line-height bugginess.
+    height: @nav-height; // line-height bugginess.
     letter-spacing: 0.5px;
     padding-top: 9px;
     padding-bottom: 9px;
@@ -139,7 +142,7 @@
     background-color: @blue;
 
     &.active {
-      box-shadow: 0px -4px 0px @blue75 inset;
+      .proxima-bold;
     }
 
     &:hover,
@@ -187,7 +190,7 @@
     }
 
     &.app-nav-link__toggle {
-      height: 46px;
+      height: @nav-height;
       position: absolute;
       right: 30px;
       top: 0;
@@ -246,4 +249,56 @@
   margin-top: -1px;
   background-color: @white;
   border-radius: 100%;
+}
+
+.app-nav-container.app-nav-container__unauthed {
+  color: @white;
+  background-color: @white;
+
+  .app-nav-link {
+    color: @blue;
+    background-color: @white;
+  }
+
+  .app-nav-logo {
+    @media @tablet {
+      transform: translate(0, -50%);
+      left: 30px;
+    }
+    @media @bigger {
+      left: 0;
+    }
+  }
+
+  .app-nav-link {
+    @media @tablet {
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+    }
+  }
+
+  .app-nav-link__toggle {
+    @media @tablet {
+      display: none;
+    }
+  }
+
+  .app-nav-list {
+    @media @tablet {
+      display: inline-block;
+      opacity: 1;
+      width: content-width;
+      max-width: none;
+      max-height: @nav-height;
+      transition: none;
+      transform: translate(0);
+      border: none;
+      box-shadow: none;
+
+      li {
+        display: inline-block;
+      }
+
+    }
+  }
 }
