@@ -18,21 +18,18 @@ class NavLink extends React.Component {
         active: React.PropTypes.bool,
         displayName: React.PropTypes.string,
         icon: React.PropTypes.string,
-        displayIcon: React.PropTypes.bool,
         url: React.PropTypes.string.isRequired
     }
 
     render() {
-        const {url, active, className, external, displayName, icon, displayIcon} = this.props;
+        const {url, active, className, external, displayName, icon} = this.props;
 
         return (
             <a className={cx({active}, className, "app-nav-link")}
                href={url}
                target={external ? "_blank" : "_self"}>
-                {icon && displayIcon &&
-                    <Icon className="app-nav-icon" name={icon}/>}
-                {displayName &&
-                    <span className="app-nav-text">{displayName}</span>}
+                {icon && <Icon className="app-nav-icon" name={icon}/>}
+                {displayName && <span className="app-nav-text">{displayName}</span>}
             </a>
         )
     }
@@ -90,7 +87,7 @@ class AppNav extends React.Component {
                     <ul className="app-nav-main">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
-                                <NavLink {...link} displayIcon={true} /></li>)}
+                                <NavLink {...link} /></li>)}
                     </ul>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className="app-nav-list">
@@ -98,12 +95,12 @@ class AppNav extends React.Component {
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
                                     className="app-nav-link__mobile-only"
-                                    {...link} displayIcon={true} /></li>)}
+                                    {...link} /></li>)}
                         {linkSet.menu.map(
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
                                     className="app-nav-link__in-menu"
-                                    displayIcon={true} {...link}/></li>)}
+                                    {...link}/></li>)}
                     </ul>
                     <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
                         <span alt="Menu" className="app-nav-burger"></span>
@@ -128,12 +125,12 @@ class AppNav extends React.Component {
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
                                     className='app-nav-link__mobile-only'
-                                    {...link} displayIcon={false} /></li>)}
+                                    {...link} /></li>)}
                         {linkSet.menu.map(
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
                                     className='app-nav-link__in-menu'
-                                    displayIcon={false} {...link}/></li>)}
+                                    {...link}/></li>)}
                     </ul>
                     <a className='app-nav-link app-nav-link__toggle' onClick={this.toggleMenu.bind(this)}>
                         <span alt='Menu' className='app-nav-burger'></span>
