@@ -37,7 +37,7 @@ module.exports = function (options) {
 
     markdown: {
       test: /\.md$/,
-      loaders: ['html', 'remarkable']}
+      loaders: ['html', 'remarkable']},
 
     svg: { test: /\.svg$/, loader: 'file-loader'}
   }
@@ -51,7 +51,8 @@ module.exports = function (options) {
         loaders.es6,
         loaders.json,
         loaders.less,
-        loaders.markdown] },
+        loaders.markdown,
+        loaders.svg ] },
     output: {
       path: path.join(options.__dirname, options.output.publicPath + '/build/'),
       publicPath: options.output.publicPath,
