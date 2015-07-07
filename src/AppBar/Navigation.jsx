@@ -80,7 +80,7 @@ class AppNav extends React.Component {
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
 
         return (
-          <div className={cx('app-nav-container')}>
+          <div className='app-nav-container'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
                     <Masthead className="app-nav-logo"/>
@@ -115,7 +115,7 @@ class AppNav extends React.Component {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
         return (
-          <div className={cx('app-nav-container', 'app-nav-container__unauthed')}>
+          <div className='app-nav-container app-nav-container__unauthed'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
                     <ThinkfulLogo className="app-nav-logo"/>
