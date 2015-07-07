@@ -5,7 +5,6 @@ const uniqueId = require('lodash/utility/uniqueId');
 // TUI Components
 const {Icon} = require('../Icon');
 const {Gravatar} = require('../Gravatar');
-const {Masthead} = require('./Masthead');
 const linkSet = require('./linkSet');
 
 /**
@@ -82,9 +81,9 @@ class AppNav extends React.Component {
           <div className='app-nav-container'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <Masthead
+                    <img
                         className="app-nav-logo"
-                        imgPath='./images/white_t_logo.svg'/>
+                        src={require('./images/white_t_logo.svg')}/>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -119,9 +118,9 @@ class AppNav extends React.Component {
           <div className='app-nav-container app-nav-container__unauthed'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <Masthead
+                    <img
                         className="app-nav-logo"
-                        imgPath='./images/blue_full_logo.svg'/>
+                        src={require('./images/blue_full_logo.svg')}/>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className='app-nav-list'>
                         {linkSet.main.map(
