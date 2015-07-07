@@ -38,6 +38,8 @@ module.exports = function (options) {
     markdown: {
       test: /\.md$/,
       loaders: ['html', 'remarkable']}
+
+    svg: { test: /\.svg$/, loader: 'file-loader'}
   }
 
   var webpackConfig = {
