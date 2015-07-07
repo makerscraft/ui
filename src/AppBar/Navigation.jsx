@@ -26,8 +26,12 @@ class NavLink extends React.Component {
             <a className={cx({active}, className, "app-nav-link")}
                href={url}
                target={external ? "_blank" : "_self"}>
-                {icon && <Icon className="app-nav-icon" name={icon}/>}
-                {displayName && <span className="app-nav-text">{displayName}</span>}
+                {icon &&
+                    <Icon className="app-nav-icon" name={icon}/>
+                }
+                {displayName
+                    && <span className="app-nav-text">{displayName}</span>
+                }
             </a>
         )
     }
