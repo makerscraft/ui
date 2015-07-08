@@ -44,9 +44,7 @@
     "moment-timezone": "^0.4.0",
     "react": "^0.13.3",
     "spark-md5": "0.0.5",
-    "tfstyleguide": "^3.0.0"
-  },
-  "devDependencies": {
+    "tfstyleguide": "^3.0.0",
     "autoprefixer-loader": "^2.0.0",
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.15",
@@ -69,5 +67,7 @@
     "style-loader": "^0.12.3",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
+  },
+  "devDependencies": {
   }
 }
