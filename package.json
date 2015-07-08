@@ -1,6 +1,6 @@
 {
   "name": "thinkful-ui",
-  "version": "1.0.12-alpha",
+  "version": "1.0.16-alpha",
   "description": "Shared navigation and UI resources for Thinkful.",
   "main": "src/index.es6",
   "scripts": {
@@ -55,6 +55,7 @@
     "eslint": "^0.22.1",
     "eslint-loader": "^0.12.0",
     "extract-text-webpack-plugin": "^0.8.1",
+    "file-loader": "^0.8.4",
     "html-loader": "^0.3.0",
     "json-loader": "^0.5.2",
     "less": "^2.5.1",
