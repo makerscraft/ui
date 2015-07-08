@@ -39,7 +39,7 @@ module.exports = function (options) {
       test: /\.md$/,
       loaders: ['html', 'remarkable']},
 
-    svg: { test: /\.svg$/, loader: 'file-loader'}
+    svg: { test: /\.svg$/, loader: 'html'}
   }
 
   var webpackConfig = {

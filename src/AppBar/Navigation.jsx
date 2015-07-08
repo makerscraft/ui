@@ -80,14 +80,14 @@ class AppNav extends React.Component {
     renderAuthed(user, config) {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
-
         return (
           <div className='app-nav-container'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <img
-                        className="app-nav-logo"
-                        src={require('./images/white_t_logo.svg')}/>
+                    <div
+                        className='app-nav-logo'
+                        dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
+                    </div>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -122,9 +122,10 @@ class AppNav extends React.Component {
           <div className='app-nav-container app-nav-container__unauthed'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <img
-                        className="app-nav-logo"
-                        src={require('./images/blue_full_logo.svg')}/>
+                    <div
+                        className='app-nav-logo'
+                        dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
+                    </div>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className='app-nav-list'>
                         {linkSet.main.map(
