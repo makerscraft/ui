@@ -23,8 +23,8 @@ let menu = [];
 if(! user) {
     menu.push(config.library);
     menu.push(config.officeHours);
-    menu.push(config.forBeginners);
-    menu.push(config.pricing);
+    // menu.push(config.forBeginners);
+    // menu.push(config.pricing);
     menu.push(config.signIn)
 }
 else {
