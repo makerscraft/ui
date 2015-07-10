@@ -1,3 +1,5 @@
-const FourOhFour = require('./FourOhFour');
+const {FourOhFour} = require('./FourOhFour');
 
-module.exports = { FourOhFour };
+module.exports = {
+    FourOhFour
+};
