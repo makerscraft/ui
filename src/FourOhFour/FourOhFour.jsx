@@ -12,8 +12,8 @@ class FourOhFour extends React.Component {
         return (
             <div className="tfui-error-page">
                 <h1>404</h1>
-                <p>The page you are looking for couldn't be found.<br/> You can try 
-                <a href="javscript:history.go(-1);">going back</a>.</p>
+                <p>The page you are looking for couldn't be found.<br/> You can try
+                <a href="javscript:history.go(-1);"> going back</a>.</p>
             </div>
         )
     }
