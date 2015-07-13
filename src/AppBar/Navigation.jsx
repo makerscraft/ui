@@ -1,6 +1,7 @@
 const cx = require('classnames');
 const React = require('react');
 const uniqueId = require('lodash/utility/uniqueId');
+const has = require('lodash/utility/has');
 
 // TUI Components
 const {Icon} = require('../Icon');
@@ -149,7 +150,7 @@ class AppNav extends React.Component {
 
     render() {
         const {user, config} = this.props;
-        return _.has(user, 'tf_login') ?
+        return has(user, 'tf_login') ?
             this.renderAuthed(user, config) : this.renderUnauthed(config);
 
     }
