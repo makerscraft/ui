@@ -1,14 +1,15 @@
 'use strict';
+
 var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
 module.exports = function (options) {
   options = _.defaults({}, options, {
     __dirname: __dirname,
     entry: ['./client/index.es6'],
+    externalStylesheet: true,
     hotloadPort: 8888
   });
 
@@ -27,25 +28,31 @@ module.exports = function (options) {
       test: /\.(es6|jsx)$/,
       loaders: ['babel?stage=0', 'eslint-loader'] },
 
-    json: { test: /\.json$/, loaders: ['json'] },
+    json: {
+      test: /\.json$/, loaders: ['json']},
 
     less: {
       test: /\.less$/,
       loader:
-        ExtractTextPlugin.extract(
-          'css!autoprefixer!less', { publicPath: './static/build/' }) },
+        options.externalStylesheet ?
+          ExtractTextPlugin.extract(
+            'css!autoprefixer!less', { publicPath: './static/build/' })
+        : 'style!css!autoprefixer!less'
+    },
 
     markdown: {
       test: /\.md$/,
       loaders: ['html', 'remarkable']},
 
-    svg: { test: /\.svg$/, loader: 'html'}
+    svg: {
+      test: /\.svg$/, loader: 'html'}
   }
 
   var webpackConfig = {
     cache: true,
     devtool: 'source-map',
     entry: options.entry,
+    noParse: [/moment.js/],
     module: {
       loaders: [
         loaders.es6,
@@ -57,10 +64,7 @@ module.exports = function (options) {
       path: path.join(options.__dirname, options.output.publicPath + '/build/'),
       publicPath: options.output.publicPath,
       filename: options.output.filename },
-    plugins: [
-      // Adds support for 'require(*.less)' from '.jsx' files
-      new ExtractTextPlugin(
-          'style', 'main.css', { disable: false, allChunks: true })],
+    plugins: [],
     resolve: {
       extensions: ['', '.js', '.jsx', '.es', '.es6'],
       alias: {app: path.join(options.__dirname, 'client')}
@@ -101,10 +105,20 @@ module.exports = function (options) {
       new webpack.NoErrorsPlugin()
     ];
   }
+  else {
+    if (options.externalStylesheet) {
+      webpackConfig.plugins.push(
+        // Adds support for 'require(*.less)' from '.jsx' files
+        new ExtractTextPlugin(
+            'style', 'main.css', {disable: false, allChunks: true}));
+    }
 
-  webpackConfig.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
-  );
+    webpackConfig.plugins.push(
+      new webpack.optimize.OccurenceOrderPlugin());
+
+    webpackConfig.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({warnings: false, comments: false}));
+  }
 
   return webpackConfig;
 };
