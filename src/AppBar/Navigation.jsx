@@ -1,7 +1,7 @@
 const cx = require('classnames');
 const React = require('react');
 const uniqueId = require('lodash/utility/uniqueId');
-const has = require('lodash/utility/has');
+const has = require('lodash/object/has');
 
 // TUI Components
 const {Icon} = require('../Icon');
