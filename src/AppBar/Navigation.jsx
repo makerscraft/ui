@@ -1,7 +1,6 @@
 const cx = require('classnames');
 const React = require('react');
 const uniqueId = require('lodash/utility/uniqueId');
-const has = require('lodash/object/has');
 
 // TUI Components
 const {Icon} = require('../Icon');
@@ -81,13 +80,12 @@ class AppNav extends React.Component {
     renderAuthed(user, config) {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
+
         return (
-          <div className='app-nav-container'>
+            <div className='app-nav-container'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <div
-                        className='app-nav-logo'
-                        dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
+                    <div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
                     </div>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
@@ -119,13 +117,12 @@ class AppNav extends React.Component {
     renderUnauthed(config) {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
+
         return (
-          <div className='app-nav-container app-nav-container__unauthed'>
+            <div className='app-nav-container app-nav-container__unauthed'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <div
-                        className='app-nav-logo'
-                        dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
+                    <div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
                     </div>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className='app-nav-list'>
@@ -150,9 +147,9 @@ class AppNav extends React.Component {
 
     render() {
         const {user, config} = this.props;
-        return has(user, 'tf_login') ?
-            this.renderAuthed(user, config) : this.renderUnauthed(config);
 
+        return user && user.tf_login ?
+            this.renderAuthed(user, config) : this.renderUnauthed(config);
     }
 }
 
