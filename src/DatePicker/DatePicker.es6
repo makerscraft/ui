@@ -53,19 +53,23 @@ class DatePicker extends React.Component {
   }
 
   componentDidMount() {
-    this._generateDays();
+    this._generateDays(this.props.defaultDate);
   }
 
   componentWillReceiveProps(newProps) {
-    const {days} = this.state;
-    let activeIndex = _.findIndex(days,
-      {dayOfYear: moment(newProps.defaultDate).dayOfYear()})
-
-    this.setState({activeIndex})
+    if (this.props.defaultDate.dayOfYear() !== newProps.defaultDate.dayOfYear()) {
+      this._generateDays(newProps.defaultDate);
+    }
   }
 
-  _generateDays() {
+  _generateDays(defaultDate=false) {
     let {monthsNavigated, activeIndex} = this.state;
+
+    // If called on initial render, check defaultDate to determine if calendar
+    // should start on a month different than the current one
+    if (defaultDate) {
+      monthsNavigated = defaultDate.month() - moment().month();
+    }
 
     const startDay = moment().add(monthsNavigated, 'month').
                             startOf('month').startOf('week').startOf('day');
@@ -80,12 +84,13 @@ class DatePicker extends React.Component {
                     dayOfYear: moment(startDay).add(day, 'day').dayOfYear()
                   }});
 
-    activeIndex = activeIndex ||
-      _.findIndex(days, {dayOfYear: moment().dayOfYear()});
+    activeIndex = (! activeIndex || activeIndex === -1) ?
+      _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()}) : activeIndex;
 
     this.setState({
       days: days,
-      activeIndex: activeIndex
+      activeIndex: activeIndex,
+      monthsNavigated: monthsNavigated
     });
   }
 
@@ -115,12 +120,13 @@ class DatePicker extends React.Component {
   }
 
   render() {
+    const {className} = this.props;
     const {days, activeIndex, monthsNavigated, visible} = this.state;
     const activeDay = days[activeIndex] && days[activeIndex].dateObj;
     const datePickerClasses = cx('date-picker', {hidden: !visible})
 
     return (
-      <div className="date-picker-container">
+      <div className={cx("date-picker-container", className)}>
         <div
             className="button date-picker-button"
             onClick={this._toggleOpen.bind(this)}>

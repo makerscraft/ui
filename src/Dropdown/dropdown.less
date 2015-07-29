@@ -3,6 +3,7 @@
 .dropdown-container {
   width: 420px;
   max-width: 100%;
+  position: relative;
 }
 
 .button.button__white.dd-button {
@@ -10,7 +11,7 @@
   position: relative;
   text-align: left;
   color: @gray75;
-  background-color: @gray5;
+  background-color: @gray15;
   margin-bottom: 0;
 
   &:focus, &:hover, &:active, &:visited {
@@ -30,10 +31,11 @@
 .dd-open {
   max-height: 300px;
   overflow: scroll;
-  border-top: 1px solid @gray15;
-  background-color: @gray5;
+  border-top: 2px solid @gray25;
+  background-color: @gray15;
   position: absolute;
-  width: 420px;
+  max-width: 100%;
+  width: 100%;
   cursor: pointer;
   z-index: 10;
 
