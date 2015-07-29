@@ -21,6 +21,7 @@ let main = [];
 let menu = [];
 
 if(! user) {
+    defaults(home, config.www);
     menu.push(config.officeHours);
     menu.push(config.mentors);
     menu.push(config.pricing);
