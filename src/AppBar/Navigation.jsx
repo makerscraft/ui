@@ -85,7 +85,7 @@ class AppNav extends React.Component {
             <div className='app-nav-container'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <a href={config.www.url}><div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
+                    <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
                     </div></a>
                     <ul className="app-nav-main">
                         {linkSet.main.map(
@@ -122,7 +122,7 @@ class AppNav extends React.Component {
             <div className='app-nav-container app-nav-container__unauthed'>
                 <nav onMouseLeave={this.handleMouseLeave.bind(this)}
                      className={navClassName} rel="main-navigation">
-                    <a href={config.www.url}><div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
+                    <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
                     </div></a>
                     <ul onMouseEnter={this.handleMouseEnter.bind(this)}
                         className='app-nav-list'>
