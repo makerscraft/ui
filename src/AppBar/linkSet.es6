@@ -74,4 +74,4 @@ try {
     });
 } catch (e) {}
 
-module.exports = {main, menu};
+module.exports = {home, main, menu};
