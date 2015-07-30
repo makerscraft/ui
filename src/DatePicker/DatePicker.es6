@@ -77,11 +77,11 @@ class DatePicker extends React.Component {
                           endOf('month').endOf('week').startOf('day');
     const totalDays = endDay.diff(startDay, 'days') + 1;
 
-    const days = [for (i of Array(totalDays).keys()) i].
-                map(day => {
+
+    const days = _.map(Array(totalDays), (i, idx) => {
                   return {
-                    dateObj: moment(startDay).add(day, 'day'),
-                    dayOfYear: moment(startDay).add(day, 'day').dayOfYear()
+                    dateObj: moment(startDay).add(idx, 'day'),
+                    dayOfYear: moment(startDay).add(idx, 'day').dayOfYear()
                   }});
 
     activeIndex = (! activeIndex || activeIndex === -1) ?
@@ -123,7 +123,7 @@ class DatePicker extends React.Component {
     const {className} = this.props;
     const {days, activeIndex, monthsNavigated, visible} = this.state;
     const activeDay = days[activeIndex] && days[activeIndex].dateObj;
-    const datePickerClasses = cx('date-picker', {hidden: !visible})
+    const datePickerClasses = cx('date-picker', {hidden: !visible});
 
     return (
       <div className={cx("date-picker-container", className)}>
