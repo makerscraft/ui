@@ -80,7 +80,6 @@ const Dropdown = React.createClass({
 
     selectedInd = selectedInd || initialSelectedInd;
 
-    const buttonClasses = cx('button', 'button__white', 'dd-button');
     const dropdownClasses = cx(
       'dd-open',
       {'hidden': !this.state.open});
@@ -88,7 +87,7 @@ const Dropdown = React.createClass({
     return (
       <div className={cx("dropdown-container", className)}>
         <div
-            className={buttonClasses}
+            className="button button__white dd-button"
             onClick={this._toggleOpen}
             data-clickable>
           {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}

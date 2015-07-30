@@ -85,7 +85,8 @@ class DatePicker extends React.Component {
                   }});
 
     activeIndex = (! activeIndex || activeIndex === -1) ?
-      _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()}) : activeIndex;
+        _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()})
+      : activeIndex;
 
     this.setState({
       days: days,
