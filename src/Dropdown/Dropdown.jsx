@@ -1,5 +1,5 @@
 const React = require('react');
-const classnames = require('classnames');
+const cx = require('classnames');
 
 require('./dropdown.less');
 
@@ -16,6 +16,7 @@ const Dropdown = React.createClass({
 
   propTypes: {
     data: React.PropTypes.array.isRequired,
+    initialSelectedInd: React.PropTypes.number,
     selectedInd: React.PropTypes.number,
     defaultDisplay: React.PropTypes.string,
     handleChange: React.PropTypes.func.isRequired
@@ -48,8 +49,9 @@ const Dropdown = React.createClass({
     return data.map((item, ind) => {
       return (
         <p
-          className="dropdown-item"
+          className={cx("dropdown-item", item.className)}
           id={ind}
+          key={ind}
           value={item.value}>
           {item.displayName}
         </p>
@@ -72,17 +74,20 @@ const Dropdown = React.createClass({
   },
 
   render() {
-    let {selectedInd, data, defaultDisplay} = this.props;
+    let {
+      initialSelectedInd, selectedInd, data,
+      defaultDisplay, className} = this.props;
 
-    const buttonClasses = classnames('button', 'button__white', 'dd-button');
-    const dropdownClasses = classnames(
+    selectedInd = selectedInd || initialSelectedInd;
+
+    const dropdownClasses = cx(
       'dd-open',
       {'hidden': !this.state.open});
 
     return (
-      <div className="dropdown-container">
+      <div className={cx("dropdown-container", className)}>
         <div
-            className={buttonClasses}
+            className="button button__white dd-button"
             onClick={this._toggleOpen}
             data-clickable>
           {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
