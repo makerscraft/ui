@@ -53,19 +53,23 @@ class DatePicker extends React.Component {
   }
 
   componentDidMount() {
-    this._generateDays();
+    this._generateDays(this.props.defaultDate);
   }
 
   componentWillReceiveProps(newProps) {
-    const {days} = this.state;
-    let activeIndex = _.findIndex(days,
-      {dayOfYear: moment(newProps.defaultDate).dayOfYear()})
-
-    this.setState({activeIndex})
+    if (this.props.defaultDate.dayOfYear() !== newProps.defaultDate.dayOfYear()) {
+      this._generateDays(newProps.defaultDate);
+    }
   }
 
-  _generateDays() {
+  _generateDays(defaultDate=false) {
     let {monthsNavigated, activeIndex} = this.state;
+
+    // If called on initial render, check defaultDate to determine if calendar
+    // should start on a month different than the current one
+    if (defaultDate) {
+      monthsNavigated = defaultDate.month() - moment().month();
+    }
 
     const startDay = moment().add(monthsNavigated, 'month').
                             startOf('month').startOf('week').startOf('day');
@@ -73,19 +77,21 @@ class DatePicker extends React.Component {
                           endOf('month').endOf('week').startOf('day');
     const totalDays = endDay.diff(startDay, 'days') + 1;
 
-    const days = [for (i of Array(totalDays).keys()) i].
-                map(day => {
+
+    const days = _.map(Array(totalDays), (i, idx) => {
                   return {
-                    dateObj: moment(startDay).add(day, 'day'),
-                    dayOfYear: moment(startDay).add(day, 'day').dayOfYear()
+                    dateObj: moment(startDay).add(idx, 'day'),
+                    dayOfYear: moment(startDay).add(idx, 'day').dayOfYear()
                   }});
 
-    activeIndex = activeIndex ||
-      _.findIndex(days, {dayOfYear: moment().dayOfYear()});
+    activeIndex = (! activeIndex || activeIndex === -1) ?
+        _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()})
+      : activeIndex;
 
     this.setState({
       days: days,
-      activeIndex: activeIndex
+      activeIndex: activeIndex,
+      monthsNavigated: monthsNavigated
     });
   }
 
@@ -115,12 +121,13 @@ class DatePicker extends React.Component {
   }
 
   render() {
+    const {className} = this.props;
     const {days, activeIndex, monthsNavigated, visible} = this.state;
     const activeDay = days[activeIndex] && days[activeIndex].dateObj;
-    const datePickerClasses = cx('date-picker', {hidden: !visible})
+    const datePickerClasses = cx('date-picker', {hidden: !visible});
 
     return (
-      <div className="date-picker-container">
+      <div className={cx("date-picker-container", className)}>
         <div
             className="button date-picker-button"
             onClick={this._toggleOpen.bind(this)}>
