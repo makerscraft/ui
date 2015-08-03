@@ -12,7 +12,7 @@ const actions = require('./actions');
  *      data={{hello: "world"}}
  *  />
  *
- *  Produces an analytics events with the following fields:
+ *  Produces an analytics event with the following fields:
  *  {
  *      app: "BirdName",
  *      appDisplayName: "ProjectName",
