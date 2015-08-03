@@ -6,6 +6,7 @@ const {Gravatar} = require('./Gravatar');
 const {Icon} = require('./Icon');
 const {AvailabilityGrid} = require('./AvailabilityGrid');
 const {SidebarLayout, SidebarMenu, SidebarMenuItem} = require('./Sidebar');
+const {TrackedLink} = require('./analytics');
 
 module.exports = {
   AppBar,
@@ -18,5 +19,6 @@ module.exports = {
   SidebarLayout,
   SidebarMenu,
   SidebarMenuItem,
-  AvailabilityGrid
+  AvailabilityGrid,
+  TrackedLink
 }
