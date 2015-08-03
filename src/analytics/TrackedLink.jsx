@@ -3,6 +3,25 @@ const React = require('react');
 
 const actions = require('./actions');
 
+/**
+ * Usage
+ *  <TrackedLink
+ *      href="/cats"
+ *      label="cat"
+ *      category="feline"
+ *      data={{hello: "world"}}
+ *  />
+ *
+ *  Produces an analytics events with the following fields:
+ *  {
+ *      app: "BirdName",
+ *      appDisplayName: "ProjectName",
+ *      category: "feline",
+ *      data: {hello: "world"},
+ *      label: "cat",
+ *      type: "link"
+ *  }
+ */
 class TrackedLink extends React.Component {
     static propTypes = {
         data: React.PropTypes.object,
