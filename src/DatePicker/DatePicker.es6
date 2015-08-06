@@ -84,9 +84,9 @@ class DatePicker extends React.Component {
                     dayOfYear: moment(startDay).add(idx, 'day').dayOfYear()
                   }});
 
-    activeIndex = (! activeIndex || activeIndex === -1) ?
-        _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()})
-      : activeIndex;
+    // Keep existing activeIndex if it is defined and a new defaultDate has not come thru
+    activeIndex = (!! defaultDate || ! activeIndex || activeIndex === -1) ?
+      _.findIndex(days, {dayOfYear: moment(defaultDate || '').dayOfYear()}) : activeIndex;
 
     this.setState({
       days: days,
