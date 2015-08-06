@@ -78,7 +78,7 @@ const Dropdown = React.createClass({
       initialSelectedInd, selectedInd, data,
       defaultDisplay, className} = this.props;
 
-    selectedInd = selectedInd || initialSelectedInd;
+    selectedInd = selectedInd === undefined ? initialSelectedInd : selectedInd;
 
     const dropdownClasses = cx(
       'dd-open',
