@@ -17,10 +17,14 @@
 }
 
 .button.date-picker-button {
+  position: relative;
+  height: 45px;
+  margin-bottom: 0;
   background-color: @gray15;
   color: @gray75;
-  position: relative;
-  margin-bottom: 0;
+  border: 1px solid mix(@gray25, @gray50, 70%);
+  box-shadow: inset 0px 3px 7px @gray15;
+  background-image: none;
 
   &:hover {
     background-color: @gray15;
@@ -36,9 +40,10 @@
 
 .date-picker {
   width: 330px;
-  border-top: 1px solid @gray15;
-  border-left: 1px solid @gray15;
-  border-right: 1px solid @gray15;
+  border-top: 1px solid @gray25;
+  border-left: 1px solid @gray25;
+  border-right: 1px solid @gray25;
+  border-radius: 3px;
   background-color: @white;
   position: absolute;
   z-index: 10;
@@ -82,7 +87,7 @@
   height: 50px;
   width: 330px;
   display: flex;
-  border-bottom: 1px solid @gray15;
+  border-bottom: 1px solid @gray25;
 
   .day-heading {
     flex-grow: 1;
@@ -100,7 +105,7 @@
   text-align: center;
   width: ~"calc(100% / 7)";
   height: 40px;
-  border-bottom: 1px solid @gray15;
+  border-bottom: 1px solid @gray25;
   padding-top: 9px;
   cursor: pointer;
   position: relative;
