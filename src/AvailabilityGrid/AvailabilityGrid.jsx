@@ -186,7 +186,7 @@ const AvailabilityGrid = React.createClass({
     const BITS_SLOT = MAX_SLOTS_HOUR / this.props.slotsHour;
     const AVAILABLE_STRING = fill(Array(BITS_SLOT), '1')
 
-    bitmap = bitmapString.split();
+    bitmap = bitmap.split();
 
     chunk(bitmap, DAYS_SLOT).
       map((day, dayIndex) => chunk(day, BITS_SLOT).
@@ -195,7 +195,7 @@ const AvailabilityGrid = React.createClass({
         })
       )
     ;
-  
+
     this.setState({days: this.state.days});
   },
 
