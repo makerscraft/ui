@@ -4,6 +4,7 @@ const React = require('react/addons');
 const classNames = require('classnames');
 const moment = require('moment');
 const chunk = require('lodash/array/chunk');
+const difference = require('lodash/array/difference');
 const fill = require('lodash/array/fill');
 
 const log = require('debug')('ui:AvailabilityGrid');
@@ -184,14 +185,15 @@ const AvailabilityGrid = React.createClass({
     const HOURS_DAY = 24;
     const DAYS_SLOT = MAX_SLOTS_HOUR * HOURS_DAY;
     const BITS_SLOT = MAX_SLOTS_HOUR / this.props.slotsHour;
-    const AVAILABLE_STRING = fill(Array(BITS_SLOT), '1')
+    const AVAILABLE_BITMAP = fill(Array(BITS_SLOT), '1')
 
-    bitmap = bitmap.split();
+    bitmap = bitmap.split('');
 
     chunk(bitmap, DAYS_SLOT).
       map((day, dayIndex) => chunk(day, BITS_SLOT).
         map((slot, slotIndex) => {
-          this.state.days[dayIndex].slots[slotIndex].selected = slot === AVAILABLE_STRING
+          this.state.days[dayIndex].slots[slotIndex].selected =
+            difference(slot, AVAILABLE_BITMAP).length === 0;
         })
       )
     ;
