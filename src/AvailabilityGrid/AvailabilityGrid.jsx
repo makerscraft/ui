@@ -185,8 +185,10 @@ const AvailabilityGrid = React.createClass({
     // split the bitmap into day-size chunks
     let dayRegex = new RegExp(`.{1,${MAX_SLOTS_HOUR * HOURS_DAY}}`, 'g');
     let slotRegex = new RegExp(`.{1,${BITS_SLOT}}`, 'g');
-    let availableString = '1'.repeat(BITS_SLOT);
     let daysData = this.state.days;
+
+    // Not supported in Safari: let availableString = '1'.repeat(BITS_SLOT);
+    let availableString = new Array(BITS_SLOT+1).join('1');
 
     let dayBitmaps = bitmap.match(dayRegex);
 
