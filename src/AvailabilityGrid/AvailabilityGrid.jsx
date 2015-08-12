@@ -3,6 +3,9 @@ require('./availability_grid.less');
 const React = require('react/addons');
 const classNames = require('classnames');
 const moment = require('moment');
+const chunk = require('lodash/array/chunk');
+const difference = require('lodash/array/difference');
+const fill = require('lodash/array/fill');
 
 const log = require('debug')('ui:AvailabilityGrid');
 
@@ -177,31 +180,25 @@ const AvailabilityGrid = React.createClass({
    * state.
    *
    */
-  _digestBitmap(bitmap) {
+  _digestBitmap(bitmap='') {
     const MAX_SLOTS_HOUR = 4;
     const HOURS_DAY = 24;
+    const DAYS_SLOT = MAX_SLOTS_HOUR * HOURS_DAY;
     const BITS_SLOT = MAX_SLOTS_HOUR / this.props.slotsHour;
+    const AVAILABLE_BITMAP = fill(Array(BITS_SLOT), '1')
 
-    // split the bitmap into day-size chunks
-    let dayRegex = new RegExp(`.{1,${MAX_SLOTS_HOUR * HOURS_DAY}}`, 'g');
-    let slotRegex = new RegExp(`.{1,${BITS_SLOT}}`, 'g');
-    let daysData = this.state.days;
+    bitmap = bitmap.split('');
 
-    // Not supported in Safari: let availableString = '1'.repeat(BITS_SLOT);
-    let availableString = new Array(BITS_SLOT+1).join('1');
-
-    let dayBitmaps = bitmap.match(dayRegex);
-
-    if (dayBitmaps) {
-      dayBitmaps.map((dayBitmap, dayIndex) => {
-        let slotBitmaps = dayBitmap.match(slotRegex);
-        slotBitmaps.map((slotValue, slotIndex) => {
-          daysData[dayIndex].slots[slotIndex].selected = slotValue === availableString;
+    chunk(bitmap, DAYS_SLOT).
+      map((day, dayIndex) => chunk(day, BITS_SLOT).
+        map((slot, slotIndex) => {
+          this.state.days[dayIndex].slots[slotIndex].selected =
+            difference(slot, AVAILABLE_BITMAP).length === 0;
         })
-      })
+      )
+    ;
 
-      this.setState({days: daysData});
-    }
+    this.setState({days: this.state.days});
   },
 
   getBitmap() {
