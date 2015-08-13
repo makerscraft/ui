@@ -22,7 +22,7 @@
 
 .app-nav-main {
     display: none;
-    @media @tablet {
+    @media @nonmobile {
       display: block;
       padding-left: 30px;
     }
@@ -54,12 +54,12 @@
       margin-top: 0;
       margin-bottom: 0;
 
-      @media @tablet {
+      @media @nonmobile {
         border-color: @gray25;
       }
     }
 
-    @media @tablet {
+    @media @nonmobile {
       right: 30px;
       left: auto;
       min-width: 176px;
@@ -78,10 +78,10 @@
 
 .app-nav__visible .app-nav-list {
   transform: translate(0px, @nav-height);
-  max-width: 768px;
+  max-width: 640px;
   opacity: 1;
 
-  @media @tablet {
+  @media @nonmobile {
     max-width: none;
     max-height: 360px;
   }
@@ -101,7 +101,7 @@
 }
 
 .app-nav-main li {
-    @media @tablet {
+    @media @nonmobile {
       display: inline-block;
 
       + li {
@@ -118,7 +118,7 @@
     transform: translate(0%, -50%);
     font-size: 0;
 
-    @media @tablet {
+    @media @nonmobile {
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -156,7 +156,7 @@
         outline: none;
     }
 
-    @media @tablet {
+    @media @nonmobile {
       padding-left: 0.5em;
       padding-right: 0.5em;
       text-align: left;
@@ -169,7 +169,7 @@
     }
 
     &.app-nav-link__in-menu {
-      @media @tablet {
+      @media @nonmobile {
         color: @blue;
         background-color: @gray5;
         text-align: center;
@@ -184,7 +184,7 @@
     }
 
     &.app-nav-link__mobile-only {
-      @media @tablet {
+      @media @nonmobile {
         display: none;
       }
     }
