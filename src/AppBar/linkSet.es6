@@ -10,6 +10,9 @@ let config = {
     },
     activity: {
         icon: 'user'
+    },
+    library: {
+        icon: 'book'
     }
 }
 
@@ -32,6 +35,7 @@ else {
     if (/admin|mentor/.test(user.role)) {
         menu.push(config.activity);
         main.push(config.officeHours);
+        main.push(config.library);
         menu.push(config.takeStudent);
         defaults(home, config.dashboard);
 
@@ -43,6 +47,7 @@ else {
         main.push(config.officeHours);
         if (/core/.test(user.student_type)) {
             defaults(home, config.dashboard);
+            main.push(config.library);
         }
         else if (/tfl/.test(user.student_type)) {
             assign(home,{
