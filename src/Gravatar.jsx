@@ -8,6 +8,8 @@ const URL = 'https://www.gravatar.com/avatar';
  * @property {string} email the users email to use with gravatar
  */
 class Gravatar extends React.Component {
+    static displayName = "Gravatar"
+
     static propTypes = {
         email: React.PropTypes.string.isRequired,
         default: React.PropTypes.string,

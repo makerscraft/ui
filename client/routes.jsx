@@ -4,7 +4,8 @@ const {DefaultRoute, Route, RouteHandler, NotFoundRoute, Redirect} = Router;
 const {DemoPage} = require('./DemoPage');
 
 const {
-  FourOhFour
+  FourOhFour,
+  AppBar
 } = require('./../src');
 
 const USER = global.__env.user;
@@ -12,7 +13,10 @@ const CONFIG = global.__env.config;
 
 class App extends React.Component {
   render() {
-    return <RouteHandler user={USER} {...this.props}/>;
+    return <div>
+      <AppBar user={USER} config={CONFIG}/>
+      <RouteHandler user={USER} {...this.props}/>
+    </div>;
   }
 }
 

@@ -1,0 +1,135 @@
+{
+  "config": {
+    "accounts": {
+      "displayName": "Accounts",
+      "host": "t.ful:5005",
+      "url": "//t.ful:5005"
+    },
+    "activity": {
+      "displayName": "My Students",
+      "host": "t.ful:5003",
+      "url": "//t.ful:5003"
+    },
+    "app": {
+      "displayName": "Raven",
+      "host": "t.ful",
+      "name": "Raven"
+    },
+    "assets": {
+      "displayName": "Assets",
+      "host": "t.ful:5007",
+      "url": "//t.ful:5007"
+    },
+    "courses": {
+      "displayName": "Courses",
+      "host": "t.ful:5001",
+      "url": "//t.ful:5001"
+    },
+    "dashboard": {
+      "displayName": "Dashboard",
+      "host": "t.ful:5013",
+      "url": "//t.ful:5013"
+    },
+    "enroll": {
+      "displayName": "Enroll",
+      "host": "t.ful:5002",
+      "url": "//t.ful:5002"
+    },
+    "forBeginners": {
+      "displayName": "For Beginners",
+      "url": "//t.ful:5000/for-beginners"
+    },
+    "library": {
+      "displayName": "Library",
+      "url": "//t.ful:5006/library"
+    },
+    "mentors": {
+      "displayName": "Mentors",
+      "url": "//t.ful:5000/mentors"
+    },
+    "officeHours": {
+      "displayName": "Office Hours",
+      "host": "t.ful:5008",
+      "url": "//t.ful:5008"
+    },
+    "pages": {
+      "displayName": "Pages",
+      "host": "t.ful:5004",
+      "url": "//t.ful:5004"
+    },
+    "pricing": {
+      "displayName": "Pricing",
+      "url": "//t.ful:5000/pricing"
+    },
+    "profiles": {
+      "displayName": "Profiles",
+      "host": "t.ful:5009",
+      "url": "//t.ful:5009"
+    },
+    "progress": {
+      "host": "t.ful:5051",
+      "url": "//t.ful:5051"
+    },
+    "projects": {
+      "displayName": "Projects",
+      "host": "t.ful:5006",
+      "url": "//t.ful:5006"
+    },
+    "records": {
+      "displayName": "Records",
+      "host": "t.ful:5018",
+      "url": "//t.ful:5018"
+    },
+    "sessions": {
+      "displayName": "Sessions",
+      "host": "t.ful:5020",
+      "url": "//t.ful:5020"
+    },
+    "settings": {
+      "displayName": "Settings",
+      "host": "t.ful:5023",
+      "url": "//t.ful:5023"
+    },
+    "signIn": {
+      "displayName": "Sign in",
+      "url": "//t.ful:5005/login"
+    },
+    "signOut": {
+      "displayName": "Sign out",
+      "url": "//t.ful:5005/logout"
+    },
+    "slack": {
+      "displayName": "Slack",
+      "url": "https://thinkful-students.slack.com"
+    },
+    "support": {
+      "displayName": "Support",
+      "url": "//t.ful:5000/support/"
+    },
+    "takeStudent": {
+      "displayName": "Take Student",
+      "url": "//t.ful:5000/patel/take_student"
+    },
+    "vendor": {
+      "logentries": {
+        "token": null
+      },
+      "segment": {
+        "token": "9b75yuar0r"
+      }
+    },
+    "wow": {
+      "host": "t.ful:5016",
+      "url": "//t.ful:5016"
+    },
+    "www": {
+      "host": "t.ful:5000",
+      "url": "//t.ful:5000"
+    }
+  },
+  "env": {
+    "debug": true,
+    "hotload": true
+  },
+  "user": null
+}

@@ -1,6 +1,7 @@
 const React = require('react');
 const moment = require('moment-timezone');
 const cx = require('classnames');
+const _ = require('lodash');
 
 require('./datepicker.less');
 
@@ -42,6 +43,8 @@ class Day extends React.Component {
 
 
 class DatePicker extends React.Component {
+  static displayName = "DatePicker"
+
   constructor() {
     super();
     this.state = {

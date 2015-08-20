@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var path = require('path');
 
 var app = express();
 
@@ -11,7 +12,7 @@ app.set('view engine', 'ejs');
 
 app.get('*', function(req,res,next) {
   templateData = {
-    global_env: {}
+    global_env: JSON.parse(fs.readFileSync(path.join(__dirname, '__env.json')))
   }
   res.render('index', templateData);
 });
