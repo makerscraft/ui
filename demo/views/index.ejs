@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thinkful UI Demo Page</title>
+
+  <link rel="icon" href="//tf-assets-prod.s3.amazonaws.com/splash/logo/favicon.ico" type="image/x-icon">
+
+  <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/30f402f3-e8e1-463e-ae1a-1987161cd5e8.css"/>
+  <!-- CSS is injected by webpack hotloader -->
+</head>
+<body>
+  <div id="tui-demo-app" class="tui-demo-page">
+  </div>
+
+  <script type="text/javascript">window.__env = <%- JSON.stringify(global_env) %></script>
+  <script src="http://localhost:8029/static/client.js"></script>
+</body>
+</html>

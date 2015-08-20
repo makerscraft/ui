@@ -1,0 +1,7 @@
+#!/bin/bash
+
+script/install
+
+script/build
+
+script/server
