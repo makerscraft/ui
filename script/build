@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -e
+./node_modules/.bin/webpack -p --display-reasons --colors --bail

@@ -4,6 +4,7 @@
   "description": "Shared navigation and UI resources for Thinkful.",
   "main": "src/index.es6",
   "scripts": {
+    "demo": "node demo/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -69,5 +70,9 @@
     "webpack-dev-server": "^1.9.0"
   },
   "devDependencies": {
+    "express": "^4.13.3",
+    "ejs": "^1.0.0",
+    "react-router": "^0.13.3",
+    "react-demo": "^0.2.4"
   }
 }
