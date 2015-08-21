@@ -15,9 +15,9 @@ require('./styles/demo.less')
 class DemoPage extends React.Component {
   render() {
     const sampleDropdownData = [
-      { value: 'pizza', displayName: "Mothefuckin' Pizza"},
-      { value: 'waffles', displayName: "Aw sick Waffles"},
-      { value: 'felafel', displayName: "I'm feelin Felafel"},
+      { value: 'pizza', displayName: "Tasty Pizza"},
+      { value: 'waffles', displayName: "Delicious Waffles"},
+      { value: 'felafel', displayName: "I'm feelin Falafel"},
       { value: 'bose', displayName: "No highs no lows, must be Bose"}
     ];
 
