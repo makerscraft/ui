@@ -7,7 +7,8 @@ const {
   Icon,
   Dropdown,
   DatePicker,
-  AvailabilityGrid
+  AvailabilityGrid,
+  Loader
 } = require('../src')
 
 require('./styles/demo.less')
@@ -67,6 +68,13 @@ class DemoPage extends React.Component {
           maxHour: Demo.props.constant(24),
           minHour: Demo.props.constant(0),
           disabled: Demo.props.choices([false, true])
+        }} />
+
+      <h3>Loader</h3>
+      <Demo
+        target={Loader}
+        props={{
+          className: Demo.props.constant('additional-class')
         }} />
     </div>);
   }
