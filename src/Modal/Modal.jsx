@@ -3,37 +3,57 @@ const cx = require('classnames');
 
 require('./modal.less');
 
+/*
+ * Two ways to use it.
+ *
+ * Render plain, without a close= prop, and it will show up
+ * as soon as it is rendered, e.g. in a subroute.
+ *
+ * Render within a {boolean && <Modal close={handlerFunc} />}
+ * to show it conditionally on a user action.
+ */
 class Modal extends React.Component {
-  static displayName = "Modal"
-
-  static propTypes = {
-      isOpen: React.PropTypes.boolean,
-      className: React.PropTypes.string,
-      onClose: React.PropTypes.func
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: true,
+      controlledByParent: !! props.close
+    }
   }
 
-  static defaultProps = {
-      isOpen: false
+  static displayName = "Modal";
+
+  static propTypes = {
+      className: React.PropTypes.string,
+      close: React.PropTypes.func
   }
 
   _closeModal() {
-    this.setState()
+    this.setState({isOpen: false});
   }
 
   render() {
-    const {className, isOpen} = this.props;
+    const {className} = this.props;
+    const {controlledByParent, isOpen} = this.state;
+
+    const closeModal = this.props.close || this._closeModal.bind(this);
 
     const wrapperClasses = cx("tui-modal-wrapper", {
-      "tui-modal-wrapper__hidden": ! isOpen
+      "tui-modal-wrapper__hidden": (!controlledByParent) && (!isOpen)
     });
     const modalClasses = cx("tui-modal-content", className);
 
     return (
       <div className={wrapperClasses}>
-        <div className="tui-modal-curtain" onClick={_closeModal}/>
+        <div className="tui-modal-curtain" onClick={closeModal}/>
         <div className={modalClasses}>
+          <a className="tui-modal-close-button" onClick={closeModal}>
+            <span aria-hidden="true" className="icon-close" />
+          </a>
           {this.props.children}
         </div>
       </div>);
   }
 }
+
+module.exports = {Modal};

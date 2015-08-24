@@ -1,3 +1,3 @@
-const Modal = require('./Modal');
+const {Modal} = require('./Modal');
 
 module.exports = {Modal};

@@ -1,13 +1,18 @@
 @import "~tfstyleguide/vars";
 
 .tui-modal-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   &.tui-modal-wrapper__hidden {
     display: none;
   }
 }
 
 .tui-modal-curtain {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
@@ -15,23 +20,59 @@
   top: 0;
   bottom: 0;
   background-color: @black;
-  opacity: .7;
+  opacity: .8;
+  z-index: 100;
 }
 
 .tui-modal-content {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   padding: 30px;
   background-color: @white;
   max-height: 100vh;
   overflow-y: scroll;
+  z-index: 101;
 
   @media @nonmobile {
-    position: fixed;
     top: 25%;
-    left: auto;
-    right: auto;
+    width: 100%;
+    bottom: auto;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px fade(@black, 50%);
     max-width: (@column-px * 8) + (@gutter-px * 7);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.tui-modal-close-button {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: @gray50;
+
+  &:hover {
+    color: @gray75;
+  }
+
+  .icon-close {
+    font-size: 32px;
+  }
+}
+
+.tui-modal-centered-buttons {
+  text-align: center;
+
+  .button {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
