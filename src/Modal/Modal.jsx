@@ -1,5 +1,6 @@
 const React = require('react');
 const cx = require('classnames');
+const {Icon} = require('../Icon');
 
 require('./modal.less');
 
@@ -48,7 +49,7 @@ class Modal extends React.Component {
         <div className="tui-modal-curtain" onClick={closeModal}/>
         <div className={modalClasses}>
           <a className="tui-modal-close-button" onClick={closeModal}>
-            <span aria-hidden="true" className="icon-close" />
+            <Icon name="close" />
           </a>
           {this.props.children}
         </div>
