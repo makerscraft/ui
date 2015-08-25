@@ -5,37 +5,8 @@ const uniqueId = require('lodash/utility/uniqueId');
 // TUI Components
 const {Icon} = require('../Icon');
 const {Gravatar} = require('../Gravatar');
+const {NavLink} = require('./NavLink');
 const linkSet = require('./linkSet');
-
-/**
- * NavLink
- * @property {} description
- */
-class NavLink extends React.Component {
-    static propTypes = {
-        active: React.PropTypes.bool,
-        displayName: React.PropTypes.string,
-        icon: React.PropTypes.string,
-        url: React.PropTypes.string.isRequired
-    }
-
-    render() {
-        const {url, active, className, external, displayName, icon} = this.props;
-
-        return (
-            <a className={cx({active}, className, "app-nav-link")}
-               href={url}
-               target={external ? "_blank" : "_self"}>
-                {icon &&
-                    <Icon className="app-nav-icon" name={icon}/>
-                }
-                {displayName
-                    && <span className="app-nav-text">{displayName}</span>
-                }
-            </a>
-        )
-    }
-}
 
 
 /**
