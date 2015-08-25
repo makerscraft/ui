@@ -5,6 +5,8 @@ const {Dropdown} = require('./Dropdown');
 const {FourOhFour} = require('./FourOhFour');
 const {Gravatar} = require('./Gravatar');
 const {Icon} = require('./Icon');
+const {Loader} = require('./Loader');
+const {Modal} = require('./Modal');
 const {SidebarLayout, SidebarMenu, SidebarMenuItem} = require('./Sidebar');
 const {TrackedLink} = require('./analytics');
 
@@ -16,6 +18,8 @@ module.exports = {
   FourOhFour,
   Gravatar,
   Icon,
+  Loader,
+  Modal,
   MenuItem: SidebarMenuItem,
   SidebarLayout,
   SidebarMenu,

@@ -6,20 +6,24 @@
   position: relative;
 }
 
-.button.button__white.dd-button {
+.dropdown-text {
+  pointer-events: none;
+}
+
+.button.dd-button {
   width: 100%;
   position: relative;
-  height: 45px;
-  text-align: left;
   border: 1px solid mix(@gray25, @gray50, 70%);
   box-shadow: inset 0px 3px 7px @gray15;
-  background-image: none;
+  background-color: @white;
+  line-height: 28px;
+  color: @gray75;
   margin-bottom: 0;
 
   &:focus, &:hover, &:active, &:visited {
     outline: none;
     background-color: @gray15;
-    color: @gray75;
+    color: @black;
   }
 
   .icon-navigatedown {
@@ -33,7 +37,8 @@
 .dd-open {
   max-height: 300px;
   overflow: scroll;
-  border-top: 2px solid @gray25;
+  border: 1px solid @gray25;
+  border-radius: 3px;
   background-color: @gray15;
   position: absolute;
   max-width: 100%;

@@ -87,10 +87,10 @@ const Dropdown = React.createClass({
     return (
       <div className={cx("dropdown-container", className)}>
         <div
-            className="button button__white dd-button"
+            className="button dd-button"
             onClick={this._toggleOpen}
             data-clickable>
-          {data[selectedInd] && data[selectedInd].displayName || defaultDisplay}
+          <span className="dropdown-text">{data[selectedInd] && data[selectedInd].displayName || defaultDisplay}</span>
           <span className="icon-navigatedown" aria-hidden="true"></span>
         </div>
         <div
