@@ -20,6 +20,8 @@ class Modal extends React.Component {
       isOpen: true,
       controlledByParent: !! props.close
     }
+
+    this._closeModal = this._closeModal.bind(this);
   }
 
   static displayName = "Modal";
@@ -37,7 +39,7 @@ class Modal extends React.Component {
     const {className} = this.props;
     const {controlledByParent, isOpen} = this.state;
 
-    const closeModal = this.props.close || this._closeModal.bind(this);
+    const closeModal = this.props.close || this._closeModal;
 
     const wrapperClasses = cx("tui-modal-wrapper", {
       "tui-modal-wrapper__hidden": (!controlledByParent) && (!isOpen)
