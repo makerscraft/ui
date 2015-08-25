@@ -54,11 +54,12 @@ class AppNav extends React.Component {
             isMenuVisible: false
         };
 
+        this._toggleMenu = this._toggleMenu.bind(this);
         this._handleMouseEnter = this._handleMouseEnter.bind(this);
         this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
-    toggleMenu() {
+    _toggleMenu() {
         this.setState({
             isMenuVisible: ! this.state.isMenuVisible
         });
@@ -107,7 +108,7 @@ class AppNav extends React.Component {
                                     className="app-nav-link__in-menu"
                                     {...link}/></li>)}
                     </ul>
-                    <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu}>
+                    <a className="app-nav-link app-nav-link__toggle" onClick={this._toggleMenu}>
                         <span alt="Menu" className="app-nav-burger"></span>
                         <Gravatar className="app-nav-gravatar" email={user.tf_login} size={120}/>
                     </a>
@@ -139,7 +140,7 @@ class AppNav extends React.Component {
                                     className='app-nav-link__in-menu'
                                     {...link}/></li>)}
                     </ul>
-                    <a className='app-nav-link app-nav-link__toggle' onClick={this.toggleMenu}>
+                    <a className='app-nav-link app-nav-link__toggle' onClick={this._toggleMenu}>
                         <span alt='Menu' className='app-nav-burger'></span>
                     </a>
                 </nav>
