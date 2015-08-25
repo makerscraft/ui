@@ -50,10 +50,12 @@ class AppNav extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             isMenuVisible: false
         };
+
+        this._handleMouseEnter = this._handleMouseEnter.bind(this);
+        this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
     toggleMenu() {
@@ -62,12 +64,12 @@ class AppNav extends React.Component {
         });
     }
 
-    handleMouseLeave(event) {
+    _handleMouseLeave(event) {
         clearTimeout(this.mouseTimeout);
         this.mouseTimeout = setTimeout(() => {this._hideMenu()}, 360);
     }
 
-    handleMouseEnter(event) {
+    _handleMouseEnter(event) {
         if (this.mouseTimeout) {
             clearTimeout(this.mouseTimeout);
         }
@@ -83,7 +85,7 @@ class AppNav extends React.Component {
 
         return (
             <div className='app-nav-container'>
-                <nav onMouseLeave={this.handleMouseLeave.bind(this)}
+                <nav onMouseLeave={this._handleMouseLeave}
                      className={navClassName} rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
                     </div></a>
@@ -92,7 +94,7 @@ class AppNav extends React.Component {
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink {...link} /></li>)}
                     </ul>
-                    <ul onMouseEnter={this.handleMouseEnter.bind(this)}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className="app-nav-list">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -105,7 +107,7 @@ class AppNav extends React.Component {
                                     className="app-nav-link__in-menu"
                                     {...link}/></li>)}
                     </ul>
-                    <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
+                    <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu}>
                         <span alt="Menu" className="app-nav-burger"></span>
                         <Gravatar className="app-nav-gravatar" email={user.tf_login} size={120}/>
                     </a>
@@ -120,11 +122,11 @@ class AppNav extends React.Component {
 
         return (
             <div className='app-nav-container app-nav-container__unauthed'>
-                <nav onMouseLeave={this.handleMouseLeave.bind(this)}
+                <nav onMouseLeave={this._handleMouseLeave}
                      className={navClassName} rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
                     </div></a>
-                    <ul onMouseEnter={this.handleMouseEnter.bind(this)}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className='app-nav-list'>
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -137,7 +139,7 @@ class AppNav extends React.Component {
                                     className='app-nav-link__in-menu'
                                     {...link}/></li>)}
                     </ul>
-                    <a className='app-nav-link app-nav-link__toggle' onClick={this.toggleMenu.bind(this)}>
+                    <a className='app-nav-link app-nav-link__toggle' onClick={this.toggleMenu}>
                         <span alt='Menu' className='app-nav-burger'></span>
                     </a>
                 </nav>
