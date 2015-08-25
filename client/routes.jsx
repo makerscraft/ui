@@ -2,6 +2,8 @@ const React = require('react');
 const Router = require('react-router');
 const {DefaultRoute, Route, RouteHandler, NotFoundRoute, Redirect} = Router;
 const {DemoPage} = require('./DemoPage');
+const {HomePage} = require('./HomePage');
+const {StaticModalPage} = require('./StaticModalPage');
 
 const {
   FourOhFour,
@@ -22,7 +24,10 @@ class App extends React.Component {
 
 const routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="demo" path="demo" handler={DemoPage}/>
+    <Route name="demo" path="demo" handler={DemoPage}>
+      <Route name="modalRoute" path="modal" handler={StaticModalPage} />
+    </Route>
+    <DefaultRoute name="default" handler={HomePage} />
     <NotFoundRoute handler={FourOhFour}/>
   </Route>
 );

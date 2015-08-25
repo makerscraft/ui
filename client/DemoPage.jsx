@@ -1,6 +1,7 @@
 const React = require('react');
 const Demo = require('react-demo');
 const moment = require('moment-timezone');
+const {RouteHandler} = require('react-router');
 
 const {
   Gravatar,
@@ -76,6 +77,8 @@ class DemoPage extends React.Component {
         props={{
           className: Demo.props.constant('additional-class')
         }} />
+
+      <RouteHandler />
     </div>);
   }
 }
