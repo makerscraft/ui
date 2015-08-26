@@ -255,6 +255,82 @@
   border-radius: 100%;
 }
 
+.app-nav-course-dropdown {
+  position: relative;
+  display: none;
+  @media @tablet {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.app-nav-course-dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: @white;
+  border: 1px solid @gray25;
+  border-top-color: @gray15;
+  border-radius: 3px;
+  padding: 0 30px;
+  width: 600px;
+  box-shadow: 0 1px 3px fade(@gray50, 25%);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 23px;
+    height: 14px;
+    width: 14px;
+    background-color: @white;
+    transform: rotate(45deg);
+    border-top: 1px solid @gray15;
+    border-left: 1px solid @gray15;
+  }
+}
+
+/* Course dropdown content */
+.app-nav-courses {
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 15px;
+  white-space: normal;
+  .grid-container();
+}
+
+.app-nav-courses-link {
+  display: inline-block;
+  width: 50%;
+  line-height: 30px;
+  padding-right: 30px;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: @gray75;
+
+  &:hover {
+    color: @blue;
+    background-color: @gray15;
+  }
+
+  span {
+    .body-text-small();
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.app-nav-courses-icon {
+  vertical-align: middle;
+  height: 30px;
+  width: auto;
+  margin-right: 15px;
+}
+
+
+
+/* Unauthed navigationg */
 .app-nav-container.app-nav-container__unauthed {
   color: @white;
   background-color: @white;
@@ -296,6 +372,7 @@
     @media @tablet {
       display: inline-block;
       opacity: 1;
+      overflow: visible;
       width: content-width;
       max-width: none;
       max-height: @nav-height;

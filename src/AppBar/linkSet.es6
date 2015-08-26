@@ -22,11 +22,11 @@ config = mapValues(global.__env.config,
 let home = {displayName: 'Home', icon: 'home'};
 let main = [];
 let menu = [];
-let renderCourseDropdown = false;
+let insertCourseDropdown = false;
 
 if(! user) {
     defaults(home, config.www);
-    renderCourseDropdown = true;
+    insertCourseDropdown = true;
     menu.push(config.mentors);
     menu.push(config.pricing);
     menu.push(config.signIn)
@@ -84,6 +84,6 @@ try {
 module.exports = {
   home,
   main,
-  renderCourseDropdown,
+  insertCourseDropdown,
   menu
 };

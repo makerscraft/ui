@@ -58,7 +58,9 @@ class AppNav extends React.Component {
         return (
             <div className='app-nav-container'>
                 <nav onMouseLeave={this._handleMouseLeave}
-                     className={navClassName} rel="main-navigation">
+                     className={navClassName}
+                     key="main-navigation"
+                     rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
                     </div></a>
                     <ul className="app-nav-main">
@@ -88,6 +90,72 @@ class AppNav extends React.Component {
         )
     }
 
+    renderCourseDropdown() {
+      return (
+        <div className="app-nav-course-dropdown">
+          <span className='app-nav-link'>Learn</span>
+          <div className="app-nav-course-dropdown-content">
+            <div className="subheading">Engineer Workshops</div>
+              <div className="app-nav-courses">
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/node.svg" />
+                  <span>Node.js Library</span>
+                </a>
+              </div>
+            <div className="subheading">1-on-1 Courses</div>
+              <div className="app-nav-courses">
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/uxd.svg" />
+                  <span>User Experience Design</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/swift.svg" />
+                  <span>iOS Programming in Swift</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/ruby.svg" />
+                  <span>Web Development in Ruby</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/python.svg" />
+                  <span>Programming in Python</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/node.svg" />
+                  <span>Backend in Node.js</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/frontend.svg" />
+                  <span>Frontend Development</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/design.svg" />
+                  <span>Modern Web Design</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/data.svg" />
+                  <span>Data Science in Python</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/angular.svg" />
+                  <span>Frontend in AngularJS</span>
+                </a>
+                <a className="app-nav-courses-link">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/android.svg" />
+                  <span>Android Mobile Development</span>
+                </a>
+              </div>
+            <div className="subheading">Career Path</div>
+            <div className="app-nav-courses">
+              <a className="app-nav-courses-link">
+                <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/career.svg" />
+                <span>Frontend Career Path</span>
+              </a>
+            </div>
+          </div>
+        </div>);
+    }
+
     renderUnauthed(config) {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
@@ -100,11 +168,12 @@ class AppNav extends React.Component {
                     </div></a>
                     <ul onMouseEnter={this._handleMouseEnter}
                         className='app-nav-list'>
-                        {linkSet.main.map(
-                            (link) => <li key={uniqueId(link)}>
-                                <NavLink
-                                    className='app-nav-link__mobile-only'
-                                    {...link} /></li>)}
+                        {linkSet.insertCourseDropdown && this.renderCourseDropdown()}
+                        {linkSet.insertCourseDropdown && <li key="courseDropdown">
+                            <NavLink className='app-nav-link__mobile-only'
+                                     displayName='Courses'
+                                     url='//www.thinkful.com/courses' />
+                          </li>}
                         {linkSet.menu.map(
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
