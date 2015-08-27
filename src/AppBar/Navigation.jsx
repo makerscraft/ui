@@ -28,8 +28,8 @@ class AppNav extends React.Component {
 
         this._toggleMenu = this._toggleMenu.bind(this);
         this._toggleCourseDropdown = this._toggleCourseDropdown.bind(this);
-        this._handleMenuMouseEnter = this._handleMenuMouseEnter.bind(this);
-        this._handleMenuMouseLeave = this._handleMenuMouseLeave.bind(this);
+        this._handleMouseEnter = this._handleMouseEnter.bind(this);
+        this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
     _toggleMenu() {
@@ -44,19 +44,21 @@ class AppNav extends React.Component {
         });
     }
 
-    _handleMenuMouseLeave(event) {
-        clearTimeout(this.mouseTimeout);
-        this.mouseTimeout = setTimeout(() => {this._hideMenu()}, 360);
-    }
 
-    _handleMenuMouseEnter(event) {
+    _handleMouseEnter(event) {
         if (this.mouseTimeout) {
             clearTimeout(this.mouseTimeout);
         }
     }
 
-    _hideMenu() {
-        this.setState({ isMenuVisible: false });
+    _handleMouseLeave(event) {
+        clearTimeout(this.mouseTimeout);
+        this.mouseTimeout = setTimeout(() => {
+          this.setState({
+            isMenuVisible: false,
+            isCourseDropdownVisible: false
+          })
+        }, 400);
     }
 
     renderAuthed(user, config) {
@@ -65,7 +67,7 @@ class AppNav extends React.Component {
 
         return (
             <div className='app-nav-container'>
-                <nav onMouseLeave={this._handleMenuMouseLeave}
+                <nav onMouseLeave={this._handleMouseLeave}
                      className={navClassName}
                      key="main-navigation"
                      rel="main-navigation">
@@ -76,7 +78,7 @@ class AppNav extends React.Component {
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink {...link} /></li>)}
                     </ul>
-                    <ul onMouseEnter={this._handleMenuMouseEnter}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className="app-nav-list">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -106,7 +108,8 @@ class AppNav extends React.Component {
         <div className="app-nav-course-dropdown">
           <span className='app-nav-link'
                 onClick={this._toggleCourseDropdown}>Learn</span>
-          <div className={dropdownContentClasses}>
+          <div onMouseEnter={this._handleMouseEnter}
+               className={dropdownContentClasses}>
             <div className="subheading">Engineer Workshops</div>
               <div className="app-nav-courses">
                 <a className="app-nav-courses-link">
@@ -174,11 +177,11 @@ class AppNav extends React.Component {
 
         return (
             <div className='app-nav-container app-nav-container__unauthed'>
-                <nav onMouseLeave={this._handleMenuMouseLeave}
+                <nav onMouseLeave={this._handleMouseLeave}
                      className={navClassName} rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
                     </div></a>
-                    <ul onMouseEnter={this._handleMenuMouseEnter}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className='app-nav-list'>
                         {linkSet.insertCourseDropdown && this.renderCourseDropdown()}
                         {linkSet.insertCourseDropdown && <li key="courseDropdown">
