@@ -5,37 +5,8 @@ const uniqueId = require('lodash/utility/uniqueId');
 // TUI Components
 const {Icon} = require('../Icon');
 const {Gravatar} = require('../Gravatar');
+const {NavLink} = require('./NavLink');
 const linkSet = require('./linkSet');
-
-/**
- * NavLink
- * @property {} description
- */
-class NavLink extends React.Component {
-    static propTypes = {
-        active: React.PropTypes.bool,
-        displayName: React.PropTypes.string,
-        icon: React.PropTypes.string,
-        url: React.PropTypes.string.isRequired
-    }
-
-    render() {
-        const {url, active, className, external, displayName, icon} = this.props;
-
-        return (
-            <a className={cx({active}, className, "app-nav-link")}
-               href={url}
-               target={external ? "_blank" : "_self"}>
-                {icon &&
-                    <Icon className="app-nav-icon" name={icon}/>
-                }
-                {displayName
-                    && <span className="app-nav-text">{displayName}</span>
-                }
-            </a>
-        )
-    }
-}
 
 
 /**
@@ -50,31 +21,44 @@ class AppNav extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            isMenuVisible: false
+            isMenuVisible: false,
+            isCourseDropdownVisible: false
         };
+
+        this._toggleMenu = this._toggleMenu.bind(this);
+        this._toggleCourseDropdown = this._toggleCourseDropdown.bind(this);
+        this._handleMouseEnter = this._handleMouseEnter.bind(this);
+        this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
-    toggleMenu() {
+    _toggleMenu() {
         this.setState({
             isMenuVisible: ! this.state.isMenuVisible
         });
     }
 
-    handleMouseLeave(event) {
-        clearTimeout(this.mouseTimeout);
-        this.mouseTimeout = setTimeout(() => {this._hideMenu()}, 360);
+    _toggleCourseDropdown() {
+        this.setState({
+            isCourseDropdownVisible: ! this.state.isCourseDropdownVisible
+        });
     }
 
-    handleMouseEnter(event) {
+
+    _handleMouseEnter(event) {
         if (this.mouseTimeout) {
             clearTimeout(this.mouseTimeout);
         }
     }
 
-    _hideMenu() {
-        this.setState({ isMenuVisible: false });
+    _handleMouseLeave(event) {
+        clearTimeout(this.mouseTimeout);
+        this.mouseTimeout = setTimeout(() => {
+          this.setState({
+            isMenuVisible: false,
+            isCourseDropdownVisible: false
+          })
+        }, 400);
     }
 
     renderAuthed(user, config) {
@@ -83,8 +67,10 @@ class AppNav extends React.Component {
 
         return (
             <div className='app-nav-container'>
-                <nav onMouseLeave={this.handleMouseLeave.bind(this)}
-                     className={navClassName} rel="main-navigation">
+                <nav onMouseLeave={this._handleMouseLeave}
+                     className={navClassName}
+                     key="main-navigation"
+                     rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/white_t_logo.svg')}}>
                     </div></a>
                     <ul className="app-nav-main">
@@ -92,7 +78,7 @@ class AppNav extends React.Component {
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink {...link} /></li>)}
                     </ul>
-                    <ul onMouseEnter={this.handleMouseEnter.bind(this)}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className="app-nav-list">
                         {linkSet.main.map(
                             (link) => <li key={uniqueId(link)}>
@@ -105,7 +91,7 @@ class AppNav extends React.Component {
                                     className="app-nav-link__in-menu"
                                     {...link}/></li>)}
                     </ul>
-                    <a className="app-nav-link app-nav-link__toggle" onClick={this.toggleMenu.bind(this)}>
+                    <a className="app-nav-link app-nav-link__toggle" onClick={this._toggleMenu}>
                         <span alt="Menu" className="app-nav-burger"></span>
                         <Gravatar className="app-nav-gravatar" email={user.tf_login} size={120}/>
                     </a>
@@ -114,30 +100,102 @@ class AppNav extends React.Component {
         )
     }
 
+    renderCourseDropdown() {
+      const dropdownContentClasses = cx("app-nav-course-dropdown-content",
+        {"app-nav-course-dropdown-content__visible" : this.state.isCourseDropdownVisible});
+
+      return (
+        <div className="app-nav-course-dropdown">
+          <span className='app-nav-link'
+                onClick={this._toggleCourseDropdown}>Learn</span>
+          <div onMouseEnter={this._handleMouseEnter}
+               className={dropdownContentClasses}>
+            <div className="subheading">Engineer Workshops</div>
+              <div className="app-nav-courses">
+                <a className="app-nav-courses-link" href="//projects.thinkful.com/library/node.js/introduction/">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/node.svg" />
+                  <span>Node.js Library</span>
+                </a>
+              </div>
+            <div className="subheading">1-on-1 Courses</div>
+              <div className="app-nav-courses">
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-ux-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/uxd.svg" />
+                  <span>User Experience Design</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-swift-programming-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/swift.svg" />
+                  <span>iOS Programming in Swift</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-ruby-on-rails-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/ruby.svg" />
+                  <span>Web Development in Rails</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-python-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/python.svg" />
+                  <span>Programming in Python</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-nodejs-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/node.svg" />
+                  <span>Backend in Node.js</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-web-development-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/frontend.svg" />
+                  <span>Frontend Development</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-web-design-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/design.svg" />
+                  <span>Modern Web Design</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-data-science-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/data.svg" />
+                  <span>Data Science in Python</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-angularjs-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/angular.svg" />
+                  <span>Frontend in AngularJS</span>
+                </a>
+                <a className="app-nav-courses-link" href="//www.thinkful.com/courses/learn-android-programming-online">
+                  <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/android.svg" />
+                  <span>Android Mobile Development</span>
+                </a>
+              </div>
+            <div className="subheading">Career Path</div>
+            <div className="app-nav-courses">
+              <a className="app-nav-courses-link" href="//www.thinkful.com/courses/frontend-development-career-path">
+                <img className="app-nav-courses-icon" src="//tf-assets-prod.s3.amazonaws.com/wow-next/course-icons/career.svg" />
+                <span>Frontend Career Path</span>
+              </a>
+            </div>
+          </div>
+        </div>);
+    }
+
     renderUnauthed(config) {
         const navClassName = cx(
             'app-nav', {'app-nav__visible': this.state.isMenuVisible});
 
         return (
             <div className='app-nav-container app-nav-container__unauthed'>
-                <nav onMouseLeave={this.handleMouseLeave.bind(this)}
+                <nav onMouseLeave={this._handleMouseLeave}
                      className={navClassName} rel="main-navigation">
                     <a href={linkSet.home.url}><div dangerouslySetInnerHTML={{__html: require('./images/blue_full_logo.svg')}}>
                     </div></a>
-                    <ul onMouseEnter={this.handleMouseEnter.bind(this)}
+                    <ul onMouseEnter={this._handleMouseEnter}
                         className='app-nav-list'>
-                        {linkSet.main.map(
-                            (link) => <li key={uniqueId(link)}>
-                                <NavLink
-                                    className='app-nav-link__mobile-only'
-                                    {...link} /></li>)}
+                        {linkSet.insertCourseDropdown && this.renderCourseDropdown()}
+                        {linkSet.insertCourseDropdown && <li key="courseDropdown">
+                            <NavLink className='app-nav-link__mobile-only'
+                                     displayName='Courses'
+                                     url='//www.thinkful.com/courses' />
+                          </li>}
                         {linkSet.menu.map(
                             (link) => <li key={uniqueId(link)}>
                                 <NavLink
                                     className='app-nav-link__in-menu'
                                     {...link}/></li>)}
                     </ul>
-                    <a className='app-nav-link app-nav-link__toggle' onClick={this.toggleMenu.bind(this)}>
+                    <a className='app-nav-link app-nav-link__toggle' onClick={this._toggleMenu}>
                         <span alt='Menu' className='app-nav-burger'></span>
                     </a>
                 </nav>
