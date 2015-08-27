@@ -8,9 +8,6 @@ let config = {
     officeHours: {
         icon: 'users'
     },
-    activity: {
-        icon: 'user'
-    },
     library: {
         icon: 'book'
     }
