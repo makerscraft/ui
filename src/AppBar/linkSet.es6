@@ -8,9 +8,6 @@ let config = {
     officeHours: {
         icon: 'users'
     },
-    activity: {
-        icon: 'user'
-    },
     library: {
         icon: 'book'
     }
@@ -22,10 +19,11 @@ config = mapValues(global.__env.config,
 let home = {displayName: 'Home', icon: 'home'};
 let main = [];
 let menu = [];
+let insertCourseDropdown = false;
 
 if(! user) {
     defaults(home, config.www);
-    menu.push(config.officeHours);
+    insertCourseDropdown = true;
     menu.push(config.mentors);
     menu.push(config.pricing);
     menu.push(config.signIn)
@@ -80,4 +78,9 @@ try {
     });
 } catch (e) {}
 
-module.exports = {home, main, menu};
+module.exports = {
+  home,
+  main,
+  insertCourseDropdown,
+  menu
+};
