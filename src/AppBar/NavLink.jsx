@@ -1,5 +1,6 @@
 const cx = require('classnames');
 const React = require('react');
+const {Icon} = require('../Icon');
 
 /**
  * NavLink
